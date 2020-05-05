@@ -16,7 +16,7 @@ public class Client : MonoBehaviour
     public UDP udp;
 
     private bool isConnected = false;
-    private delegate void packethandler(Packet _packet);
+    private delegate void packethandler(Packet _packet); //Delegates are used to pass methods as arguments to other methods.
     private static Dictionary<int, packethandler> packetHandlers;
     private void Awake()
     {
