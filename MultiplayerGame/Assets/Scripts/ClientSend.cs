@@ -26,14 +26,6 @@ public class ClientSend : MonoBehaviour
         }
     }
 
-    //public static void UDPTestRecieved()
-    //{
-    //    using (Packet _packet = new Packet((int)ClientPackets.udpTestReceive))
-    //    {
-    //        _packet.Write("Received a UDP packet.");
-    //        SendUDPData(_packet);
-    //    }
-    //}
     public static void PlayerMovement(bool[] _inputs)
     {
         using (Packet _packet = new Packet((int)ClientPackets.PlayerMovement))
@@ -46,6 +38,19 @@ public class ClientSend : MonoBehaviour
             _packet.Write(GameManager.players[Client.instance.myid].transform.rotation);
 
             SendUDPData(_packet);
+        }
+    }
+
+
+    public static void GetListOfPlayers()
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.GetListOfPlayers))
+        {
+
+            _packet.Write(Client.instance.myid);
+            _packet.Write(UIManager.instance.usernameField.text);
+
+            SendTCPData(_packet);
         }
     }
     #endregion

@@ -9,11 +9,10 @@ using UnityEngine;
 public enum ServerPackets
 {
     welcome = 1,
-    //udpTest,
     spawnPlayer,
     playerPosition,
     playerRotation,
-
+    sendplayernames,
 
 }
 
@@ -21,9 +20,8 @@ public enum ServerPackets
 public enum ClientPackets
 {
     welcomeReceived = 1,
-    //udpTestReceive,
     PlayerMovement,
-
+    GetListOfPlayers,
 }
 public class Packet : IDisposable
     {

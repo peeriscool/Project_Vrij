@@ -24,10 +24,10 @@ namespace Gameserver
             InitializeServerData();
             tcplistner = new TcpListener(IPAddress.Any, Port);
             tcplistner.Start();
-            tcplistner.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null); //begin tcplistner + callback state
+            tcplistner.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null); //begin tcplistner + callback state. this is the line of code that detects users connceted!!!
 
             udplistner = new UdpClient(Port);
-            udplistner.BeginReceive(UDPRecieveCallback, null);
+            udplistner.BeginReceive(UDPRecieveCallback, null); // this is the line of code that detects users connceted!!!
             Console.WriteLine($"Server gestart op {Port}.");
 
         }
@@ -99,7 +99,7 @@ namespace Gameserver
         }
         private static void InitializeServerData() //fill client dictionary
         {
-            for (int i = 1; i <= MaxPlayers; i++)
+            for (int i = 1; i <= MaxPlayers; i++) //create slots for players to fill
             {
                 clients.Add(i, new Client(i));
             }
@@ -107,8 +107,9 @@ namespace Gameserver
             packethandlers = new Dictionary<int, PacketHandler>()
             {
                 { (int)ClientPackets.welcomeReceived,ServerHandle.WelcomeReceived},
-                { (int)ClientPackets.playerMovement,ServerHandle.PlayerMovement}
-                
+                { (int)ClientPackets.playerMovement,ServerHandle.PlayerMovement},
+                 { (int)ClientPackets.getlistofplayers,ServerHandle.GetListOfPlayers},
+
             };
             Console.WriteLine("Initialized packets");
         }

@@ -8,11 +8,10 @@ namespace Gameserver
     public enum ServerPackets
     {
         welcome = 1,
-            //udpTest,
         spawnPlayer,
-            playerPosition,
-            playerRotation,
-            
+        playerPosition,
+        playerRotation,
+        sendplayernames,
 
     }
 
@@ -20,9 +19,8 @@ namespace Gameserver
     public enum ClientPackets
     {
         welcomeReceived = 1,
-              //udpTestReceive,
               playerMovement,
-              
+        getlistofplayers,
     }
 
     public class Packet : IDisposable

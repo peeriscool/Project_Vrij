@@ -36,6 +36,11 @@ namespace Gameserver
 
             Server.clients[_fromClient].player.SetInput(_inputs,_rotation);
         }
+        public static void GetListOfPlayers(int _fromClient, Packet _packet) 
+        {
+           // Console.WriteLine("recieved");
+            ServerSend.SendPlayerNames(_fromClient);
+        }
 
     }
 }

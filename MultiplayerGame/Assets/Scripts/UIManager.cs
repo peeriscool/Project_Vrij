@@ -8,8 +8,12 @@ public class UIManager : MonoBehaviour
 
     public GameObject startMenu;
     public InputField usernameField;
+    public Text Names;
+    public Button Refresher;
     private void Awake()
     {
+        Refresher.interactable = false;
+
         if (instance == null)
         {
             instance = this;
@@ -23,8 +27,25 @@ public class UIManager : MonoBehaviour
 
     public void ConnectedToServer()
     {
+        if(usernameField.text == null || usernameField.text == "Username...")
+        {
+            usernameField.text = "NoName";
+        }
         startMenu.SetActive(false);
         usernameField.interactable = false;
+        Refresher.interactable = true;
         Client.instance.ConnectedToServer();
+        //Client.instance.RefreshPlayerList(); //initial load of online plyers on the server
+    }
+
+    //peer method
+    public void RefreshPlayerList() //refresh button
+    {
+        Names.text = "";
+        ClientSend.GetListOfPlayers();
+    }
+    public void Fillplayerlist(string name) //refresh button
+    {
+        Names.text += name;
     }
 }

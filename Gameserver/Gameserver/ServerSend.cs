@@ -69,15 +69,6 @@ namespace Gameserver
                 SendTCPData(_toClient, _packet);
             }
         }
-        //public static void UDPTEst(int _toClient)
-        //{
-        //    using (Packet _packet = new Packet((int) ServerPackets.udpTest))
-        //    {
-        //        _packet.Write("A test packet using UDP!");
-
-        //        SendUDpData(_toClient, _packet);
-        //    }
-        //}
 
         public static void SpawnPlayer(int _toClient, Player _player)
         {
@@ -113,6 +104,31 @@ namespace Gameserver
 
                 SendUDPataToAll(_player.id, _packet);
             }
+        }
+
+        public static void SendPlayerNames(int _toClient) //prints all the player names to the console
+        {
+            string Playernames = "";
+            for (int i = 1; i < Server.clients.Count; i++)
+            {
+                if (Server.clients[i].player != null)
+                {
+                    if (Server.clients[i].player.username != null)
+                    {
+                        Console.WriteLine(Server.clients[i].player.username);
+                        Playernames += Server.clients[i].player.username.ToString() + ",";
+                    }  
+                }
+            }
+
+
+            using (Packet _packet = new Packet((int)ServerPackets.sendplayernames))
+            {
+                _packet.Write(Playernames);
+                _packet.Write(_toClient);
+                SendTCPData(_toClient, _packet);
+            }
+
         }
         #endregion
     }

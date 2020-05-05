@@ -15,14 +15,6 @@ public static void Welcome(Packet _packet)
 
         Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port);
     }
-    //public static void UDPTest(Packet _packet)
-    //{
-    //    string _msg = _packet.ReadString();
-
-    //    Debug.Log($"Recieved packet via UDP. Contains message: {_msg}");
-
-    //    ClientSend.UDPTestRecieved();
-    //}
 
     public static void SpawnPlayer(Packet _packet)
     {
@@ -31,20 +23,28 @@ public static void Welcome(Packet _packet)
         Vector3 _position = _packet.ReadVector3();
         Quaternion _rotation = _packet.ReadQuaternion();
 
-        GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation); //actualy spawn players
+  //      GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation); //actualy spawn players
     }
     public static void PlayerPosition(Packet _packet)
     {
         int _id = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
 
-        GameManager.players[_id].transform.position = _position;
+ //       GameManager.players[_id].transform.position = _position;
     }
     public static void PlayerRotation(Packet _packet)
     {
         int _id = _packet.ReadInt();
         Quaternion _rotation = _packet.ReadQuaternion();
 
-        GameManager.players[_id].transform.rotation = _rotation;
+ //       GameManager.players[_id].transform.rotation = _rotation;
     }
+    public static void SendPlayerNames(Packet _packet)
+    {
+       // int _id = _packet.ReadInt();
+        string readnames = _packet.ReadString();
+        Debug.Log(readnames);
+       
+       GameObject.Find("Menu").GetComponent<UIManager>().Fillplayerlist(readnames);
     }
+}
