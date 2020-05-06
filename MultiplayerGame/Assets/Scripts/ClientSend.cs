@@ -48,7 +48,19 @@ public class ClientSend : MonoBehaviour
         {
 
             _packet.Write(Client.instance.myid);
-            _packet.Write(UIManager.instance.usernameField.text);
+            _packet.Write(UIManager.instance.usernameField.text); //maybe change to a parameter for the method?
+
+            SendTCPData(_packet);
+        }
+    }
+
+    public static void PlayerReady(bool status)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.PlayerReady))
+        {
+
+            _packet.Write(Client.instance.myid);
+            _packet.Write(status);
 
             SendTCPData(_packet);
         }

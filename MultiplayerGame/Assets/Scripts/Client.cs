@@ -46,6 +46,7 @@ public class Client : MonoBehaviour
         isConnected = true;
         tcp.Connect();
     }
+   
     public class TCP
     {
         public TcpClient socket;
@@ -254,6 +255,8 @@ public class Client : MonoBehaviour
               { (int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
               { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
               { (int)ServerPackets.playerRotation, ClientHandle.PlayerRotation },
+              { (int)ServerPackets.sendplayernames, ClientHandle.SendPlayerNames },
+
         };
         Debug.Log("initialized packets.");
     }

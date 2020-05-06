@@ -41,6 +41,13 @@ namespace Gameserver
            // Console.WriteLine("recieved");
             ServerSend.SendPlayerNames(_fromClient);
         }
-
+        public static void PlayerReady(int _fromClient, Packet _packet)
+        {
+            //read out packet and get bool
+            bool readstatus = _packet.ReadBool();
+            //send data to lobby class
+            Lobby.RecievePlayerStatus(_fromClient, readstatus);
+        }
+        
     }
 }

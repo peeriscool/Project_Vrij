@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     public InputField usernameField;
     public Text Names;
     public Button Refresher;
+    public Toggle Ready;
+    bool toggle = true;
     private void Awake()
     {
         Refresher.interactable = false;
@@ -37,7 +39,7 @@ public class UIManager : MonoBehaviour
         Client.instance.ConnectedToServer();
         //Client.instance.RefreshPlayerList(); //initial load of online plyers on the server
     }
-
+    // #region 
     //peer method
     public void RefreshPlayerList() //refresh button
     {
@@ -48,4 +50,20 @@ public class UIManager : MonoBehaviour
     {
         Names.text += name;
     }
+    public void ReadyToggle()
+    {
+        if (toggle == true)
+        {
+            Ready.isOn = true;
+            toggle = false;
+            ClientSend.PlayerReady(true);
+        }
+       else if (toggle == false)
+        {
+            Ready.isOn = false;
+            toggle = true;
+        }
+       
+    }
+
 }

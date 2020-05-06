@@ -12,15 +12,16 @@ namespace Gameserver
         playerPosition,
         playerRotation,
         sendplayernames,
-
+        
     }
 
     /// <summary>Sent from client to server.</summary>
     public enum ClientPackets
     {
         welcomeReceived = 1,
-              playerMovement,
+        playerMovement,
         getlistofplayers,
+        playerready,
     }
 
     public class Packet : IDisposable

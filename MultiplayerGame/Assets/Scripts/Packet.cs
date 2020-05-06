@@ -22,6 +22,7 @@ public enum ClientPackets
     welcomeReceived = 1,
     PlayerMovement,
     GetListOfPlayers,
+    PlayerReady,
 }
 public class Packet : IDisposable
     {
