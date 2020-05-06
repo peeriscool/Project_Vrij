@@ -13,7 +13,7 @@ public enum ServerPackets
     playerPosition,
     playerRotation,
     sendplayernames,
-
+    startgame,
 }
 
 /// <summary>Sent from client to server.</summary>

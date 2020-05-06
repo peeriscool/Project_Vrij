@@ -47,4 +47,13 @@ public static void Welcome(Packet _packet)
        
        GameObject.Find("Menu").GetComponent<UIManager>().Fillplayerlist(readnames);
     }
+    public static void StartGame(Packet _packet)
+    {
+        Debug.Log("LET'S GO!");
+        if (_packet.ReadBool() == true)
+        {
+            //code for starting game
+            SceneManagerScript.EndLobby(true);
+        }
+    }
 }

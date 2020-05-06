@@ -130,6 +130,16 @@ namespace Gameserver
             }
 
         }
+        public static void StartGame()
+        {
+            //all players are ready send code to end lobby and start game
+            //maybe make a overload method for ending rounds?
+            using (Packet _packet = new Packet((int)ServerPackets.StartGame))
+            {
+                _packet.Write(true);
+                SendTCPDataToAll(_packet);
+            }
+        }
         #endregion
     }
 }

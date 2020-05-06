@@ -8,6 +8,7 @@ namespace Gameserver
     {
         static List<ReadyPlayer> allplayerstatus = new List<ReadyPlayer>(); //list of playerstatus
        static int playersready = 0;
+        static int minimalplayers = 1; //Fix!: 1 is actualy 2 players : 0 and 1
         public static void RecievePlayerStatus(int _fromClient, bool status)
         {
             int ClientReady = _fromClient;
@@ -21,9 +22,9 @@ namespace Gameserver
             if (allplayerstatus.Count == 0)
             {
                 allplayerstatus.Add(activerequest);
-                Console.WriteLine("firstplayer");
+                Console.WriteLine($"added player number {activerequest.Who +1} to the list of ready players");
             }
-            //see if a player is already in the list
+            //see if a player is already in the list else add him
             for (int i = 0; i < allplayerstatus.Count; i++)
             {
                 if (activerequest.Who == allplayerstatus[i].Who)
@@ -33,7 +34,7 @@ namespace Gameserver
                 else
                 {
                     allplayerstatus.Add(activerequest);
-                    Console.WriteLine(allplayerstatus.Count + allplayerstatus.ToString());
+                    Console.WriteLine($"added player number {activerequest.Who +1} to the list of ready players");
                 }
             }
             //foreach (ReadyPlayer i in allplayerstatus)
@@ -47,29 +48,31 @@ namespace Gameserver
             //        allplayerstatus.Add(activerequest);
             //        Console.WriteLine(allplayerstatus.Count + allplayerstatus.ToString());
             //    }
-                
+
             //}
             //--------------check if all players are ready----------------
-            foreach (ReadyPlayer i in allplayerstatus)
+            for (int i = 0; i < allplayerstatus.Count; i++)
             {
-
-                if (i.ReadyStatus == true)
+                Console.WriteLine(i + " index");
+                if (allplayerstatus[i].ReadyStatus == true)
                 {
-                    playersready = +1;
+                    playersready = playersready + 1;
                 }
-            }
 
-            if(playersready == allplayerstatus.Count)
-            {
-                if(playersready <= 1)
+                Console.WriteLine(playersready + " int");
+                Console.WriteLine(allplayerstatus.Count + " count");
+                if (playersready == allplayerstatus.Count)
                 {
-                    Console.WriteLine("to few players");
-                }
-                else
-                {
-                    Console.WriteLine("All Players are ready!");
-                    //send message to all players that the game can begin
-                    //ServerSend.         (allplayers,ready);
+                    if (playersready <= minimalplayers)
+                    {
+                        Console.WriteLine("to few players");
+                    }
+                    else
+                    {
+                        Console.WriteLine("All Players are ready!");
+                        //send message to all players that the game can begin
+                        ServerSend.StartGame();        // (allplayers,ready);
+                    }
                 }
             }
         }
