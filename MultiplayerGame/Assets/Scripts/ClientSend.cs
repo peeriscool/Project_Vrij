@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Net.Sockets;
 
 public class ClientSend : MonoBehaviour
 {
@@ -66,4 +67,8 @@ public class ClientSend : MonoBehaviour
         }
     }
     #endregion
+    //private static void SendFile(Socket client, string fileName, byte[] bytes)
+    //{
+    //    client.SendFile(fileName, null, bytes, TransmitFileOptions.UseDefaultWorkerThread);
+    //}
 }

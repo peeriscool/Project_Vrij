@@ -8,5 +8,6 @@ public class buttonScript : MonoBehaviour
     public void ClickMe()
     {
         Debug.Log(returnValue);
+      GameObject.Find("ScriptHolder").GetComponent<Spawnobjects>().prefabselector(returnValue);
     }
 }
