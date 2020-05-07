@@ -8,7 +8,7 @@ public class AudioRec : MonoBehaviour
 
     float currCountdownValue;
     AudioClip myAudioClip;
-
+    public int cliplenght;
     void Start() { }
     void Update() { }
 
@@ -17,7 +17,7 @@ public class AudioRec : MonoBehaviour
         if (GUI.Button(new Rect(10, 10, 60, 50), "Record"))
         {
 
-            StartCoroutine(RecordWhile(10));
+            StartCoroutine(RecordWhile(cliplenght));
         }
         if (GUI.Button(new Rect(10, 70, 60, 50), "Save"))
         {
@@ -29,7 +29,7 @@ public class AudioRec : MonoBehaviour
 
     public IEnumerator RecordWhile(float countdownValue)
     {
-        myAudioClip = Microphone.Start(null, false, 10, 44100);
+        myAudioClip = Microphone.Start(null, false, cliplenght, 44100);
         currCountdownValue = countdownValue;
         while (currCountdownValue > 0)
         {
@@ -56,14 +56,13 @@ public class AudioRec : MonoBehaviour
         myAudioClip.SetData(samples, 0);
 
 
-        var byteArray = new byte[samples.Length * 4];
-        Buffer.BlockCopy(samples, 0, byteArray, 0, byteArray.Length);
+        //var byteArray = new byte[samples.Length * 4];
+       // Buffer.BlockCopy(samples, 0, byteArray, 0, byteArray.Length);
 
-        saveFloatArrayToFile(byteArray);
+        saveFloatArrayToFile(samples);
     }
-    void saveFloatArrayToFile(byte[] data)
+    void saveFloatArrayToFile(float[] data)
     {
-        
         BinaryWriter writer = new BinaryWriter(File.Open("name.txt", FileMode.Create));
        
         foreach (float item in data)

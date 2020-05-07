@@ -14,6 +14,8 @@ namespace Gameserver
             mainThread.Start();
             Server.start(8,26950); //maxplayer and port
 
+           ReceiveFiles instance = new ReceiveFiles();
+            instance.Filetoserver();
         }
         private static void MainThread()
         {
