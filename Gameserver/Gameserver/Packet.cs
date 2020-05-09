@@ -13,6 +13,7 @@ namespace Gameserver
         playerRotation,
         sendplayernames,
         StartGame,
+        SendAduioToPlayers,
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -22,6 +23,7 @@ namespace Gameserver
         playerMovement,
         getlistofplayers,
         playerready,
+        sendaudiobytes,
     }
 
     public class Packet : IDisposable

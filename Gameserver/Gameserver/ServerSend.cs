@@ -16,24 +16,24 @@ namespace Gameserver
             _packet.WriteLength();
             Server.clients[_toClient].udp.SendData(_packet);
         }
-        private static void SendTCPDataToAll( Packet _packet) //send packet to all players
+        private static void SendTCPDataToAll(Packet _packet) //send packet to all players
         {
             _packet.WriteLength();
             for (int i = 1; i <= Server.MaxPlayers; i++)
             {
                 Server.clients[i].tcp.SendData(_packet);
-            } 
+            }
         }
         private static void SendTCPDataToAll(int _exceptClient, Packet _packet) //send packet to all players except specifik client
         {
             _packet.WriteLength();
             for (int i = 1; i <= Server.MaxPlayers; i++)
             {
-                if(i != _exceptClient)
-            {
+                if (i != _exceptClient)
+                {
                     Server.clients[i].tcp.SendData(_packet);
                 }
-         
+
             }
 
         }
@@ -117,7 +117,7 @@ namespace Gameserver
                     {
                         Console.WriteLine(Server.clients[i].player.username);
                         Playernames += Server.clients[i].player.username.ToString() + ",";
-                    }  
+                    }
                 }
             }
 
@@ -137,6 +137,18 @@ namespace Gameserver
             using (Packet _packet = new Packet((int)ServerPackets.StartGame))
             {
                 _packet.Write(true);
+                SendTCPDataToAll(_packet);
+            }
+        }
+        public static void SendAduioToPlayers(byte [] AduioBytes, int _myId)
+            {
+            using (Packet _packet = new Packet((int)ServerPackets.SendAduioToPlayers))
+            {
+               
+               
+                _packet.Write(AduioBytes.Length);
+                _packet.Write(AduioBytes);
+                // SendTCPDataToAll(_myId,_packet); //except sender
                 SendTCPDataToAll(_packet);
             }
         }

@@ -256,7 +256,8 @@ public class Client : MonoBehaviour
               { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
               { (int)ServerPackets.playerRotation, ClientHandle.PlayerRotation },
               { (int)ServerPackets.sendplayernames, ClientHandle.SendPlayerNames },
-              { (int)ServerPackets.startgame, ClientHandle.StartGame }, 
+              { (int)ServerPackets.startgame, ClientHandle.StartGame },
+            { (int)ServerPackets.SendAduioToPlayers,ClientHandle.SendAudioTplayers}
 
         };
         Debug.Log("initialized packets.");

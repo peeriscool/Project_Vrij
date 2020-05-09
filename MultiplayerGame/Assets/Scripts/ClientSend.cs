@@ -66,6 +66,19 @@ public class ClientSend : MonoBehaviour
             SendTCPData(_packet);
         }
     }
+
+    public static void SendAudioBytes(byte[] AudioData)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.SendAudioBytes))
+        {
+
+            _packet.Write(Client.instance.myid);
+            Debug.Log(Client.instance.ip);
+            _packet.Write(AudioData);
+
+            SendTCPData(_packet);
+        }
+    }
     #endregion
     //private static void SendFile(Socket client, string fileName, byte[] bytes)
     //{

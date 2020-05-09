@@ -109,8 +109,8 @@ namespace Gameserver
                 { (int)ClientPackets.welcomeReceived,ServerHandle.WelcomeReceived},
                 { (int)ClientPackets.playerMovement,ServerHandle.PlayerMovement},
                 { (int)ClientPackets.getlistofplayers,ServerHandle.GetListOfPlayers},
-                { (int)ClientPackets.playerready,ServerHandle.PlayerReady},  
-
+                { (int)ClientPackets.playerready,ServerHandle.PlayerReady},
+                { (int)ClientPackets.sendaudiobytes,ServerHandle.SendAudioBytes},
             };
             Console.WriteLine("Initialized packets");
         }

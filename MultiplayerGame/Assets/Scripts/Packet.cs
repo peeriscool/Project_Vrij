@@ -14,6 +14,7 @@ public enum ServerPackets
     playerRotation,
     sendplayernames,
     startgame,
+    SendAduioToPlayers,
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -23,6 +24,7 @@ public enum ClientPackets
     PlayerMovement,
     GetListOfPlayers,
     PlayerReady,
+    SendAudioBytes,
 }
 public class Packet : IDisposable
     {

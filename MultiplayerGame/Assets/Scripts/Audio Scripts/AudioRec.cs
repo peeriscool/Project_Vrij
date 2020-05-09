@@ -23,7 +23,7 @@ public class AudioRec : MonoBehaviour
         {
             SavWav.Save("myfile", myAudioClip);
 
-            //        audio.Play();
+            
         }
     }
 
@@ -38,55 +38,73 @@ public class AudioRec : MonoBehaviour
             currCountdownValue--;
         }
         Debug.Log("TimerDone");
-        MakeFloatArray();
+        Byte[] WavInBytes =  WavUtility.FromAudioClip(myAudioClip); //convert in to byte[]
+      //  AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes); //convert byte[] in audioclip
+        //-----------------------------------------------------------------------------------------------
+        ClientSend.SendAudioBytes(WavInBytes);
+
+      //  AudioSource playaudio = GetComponent<AudioSource>();
+      //  playaudio.clip = notmyAudioClip;
+      //  playaudio.Play();
+      ////  MakeFloatArray();
+    }
+    public void ListenToAudioServer(Byte[] RecievedAudioData)
+    {
+        Byte[] WavInBytes = RecievedAudioData; //convert in to byte[]
+        AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes); //convert byte[] in audioclip
+        //-----------------------------------------------------------------------------------------------
+        ClientSend.SendAudioBytes(WavInBytes);
+
+        AudioSource playaudio = GetComponent<AudioSource>();
+        playaudio.clip = notmyAudioClip;
+        playaudio.Play();
     }
 
    // experemental code of converting.wav to a float array
-    void MakeFloatArray()
-    {
-        // AudioSource audioSource = GetComponent<AudioSource>();
-        float[] samples = new float[myAudioClip.samples * myAudioClip.channels];
-        myAudioClip.GetData(samples, 0);
-
-        for (int i = 0; i < samples.Length; ++i)
-        {
-            samples[i] = samples[i] * 0.5f;
-        }
-
-        myAudioClip.SetData(samples, 0);
-
-
-        //var byteArray = new byte[samples.Length * 4];
-       // Buffer.BlockCopy(samples, 0, byteArray, 0, byteArray.Length);
-
-        saveFloatArrayToFile(samples);
-    }
-    void saveFloatArrayToFile(float[] data)
-    {
-        BinaryWriter writer = new BinaryWriter(File.Open("name.txt", FileMode.Create));
-       
-        foreach (float item in data)
-        {
-            writer.Write(item);
-        }
-        ReadOutWavefile();
-    }
-    void ReadOutWavefile()
-    {
-      AudioClip testng =  WavUtility.ToAudioClip(Application.dataPath +"\name.txt");
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.clip = testng;
-        audio.Play();
-    }
-
-    void WriteTOByte()
-    {
+    //void MakeFloatArray()
+    //{
         
-        WAV wav = new WAV(rawData);
-        Debug.Log(wav);
-        AudioClip audioClip = AudioClip.Create("testSound", wav.SampleCount, 1, wav.Frequency, false, false);
-        audioClip.SetData(wav.LeftChannel, 0);
-        audio.clip = audioClip;
-        audio.Play();
-    }
+    //    // AudioSource audioSource = GetComponent<AudioSource>();
+    //    float[] samples = new float[myAudioClip.samples * myAudioClip.channels];
+    //    myAudioClip.GetData(samples, 0);
+    //    for (int i = 0; i < samples.Length; ++i)
+    //    {
+    //        samples[i] = samples[i] * 0.5f;
+    //    }
+
+    //    myAudioClip.SetData(samples, 0);
+
+    //    Byte[] byteArray = new byte[samples.Length * 4];
+    //    Buffer.BlockCopy(samples, 0, byteArray, 0, byteArray.Length); //?
+    //    WriteTOByte(byteArray);
+    //    //saveFloatArrayToFile(samples);
+    //}
+   // void saveFloatArrayToFile(float[] data)
+    //{
+    //    BinaryWriter writer = new BinaryWriter(File.Open("name.txt", FileMode.Create));
+       
+    //    foreach (float item in data)
+    //    {
+    //        writer.Write(item);
+    //    }
+    //    ReadOutWavefile();
+    //}
+    //void ReadOutWavefile()
+    //{
+    //  AudioClip testng =  WavUtility.ToAudioClip(Application.dataPath +"\name.txt");
+    //    AudioSource audio = GetComponent<AudioSource>();
+    //    audio.clip = testng;
+    //    audio.Play();
+    //}
+
+    //void WriteTOByte(byte [] rawData)
+    //{
+
+    //    WAV wav = new WAV(rawData);
+    //    Debug.Log(wav);
+    //    AudioClip audioClip = AudioClip.Create("testSound", wav.SampleCount, 1, wav.Frequency, false, false);
+    //    audioClip.SetData(wav.LeftChannel, 0);
+    //    GetComponent<AudioSource>().clip = audioClip;
+    //    GetComponent<AudioSource>().Play();
+    //}
 }

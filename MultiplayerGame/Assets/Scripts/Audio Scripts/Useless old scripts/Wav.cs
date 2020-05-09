@@ -2,8 +2,8 @@
 using System.Collections;
 using System.IO;
 
-namespace WWUtils.Audio
-{
+
+
     public class WAV
     {
 
@@ -93,4 +93,3 @@ namespace WWUtils.Audio
         }
     }
 
-}

@@ -48,6 +48,12 @@ namespace Gameserver
             //send data to lobby class
             Lobby.RecievePlayerStatus(_fromClient, readstatus);
         }
-        
+        public static void SendAudioBytes(int _fromClient, Packet _packet)
+        {
+
+            byte[] AudioRecieved = _packet.ToArray();
+            Console.WriteLine("i recieved audio no what the fuck you want me to do?");
+            ServerSend.SendAduioToPlayers(AudioRecieved, _fromClient);
+        }
     }
 }

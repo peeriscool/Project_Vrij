@@ -8,9 +8,10 @@ namespace Gameserver
     {
         static List<ReadyPlayer> allplayerstatus = new List<ReadyPlayer>(); //list of playerstatus
        static int playersready = 0;
-        static int minimalplayers = 1; //Fix!: 1 is actualy 2 players : 0 and 1
+        static int minimalplayers = 0; //Fix!: 0 is actualy 1 players : 0 and 1
         public static void RecievePlayerStatus(int _fromClient, bool status)
         {
+            Console.WriteLine("recievedplayerstatus of " + _fromClient);
             int ClientReady = _fromClient;
             bool PlayerStatus = status;
           ReadyPlayer Player = new ReadyPlayer(_fromClient, status);
