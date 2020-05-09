@@ -78,4 +78,15 @@ public class AudioRec : MonoBehaviour
         audio.clip = testng;
         audio.Play();
     }
+
+    void WriteTOByte()
+    {
+        
+        WAV wav = new WAV(rawData);
+        Debug.Log(wav);
+        AudioClip audioClip = AudioClip.Create("testSound", wav.SampleCount, 1, wav.Frequency, false, false);
+        audioClip.SetData(wav.LeftChannel, 0);
+        audio.clip = audioClip;
+        audio.Play();
+    }
 }
