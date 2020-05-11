@@ -52,8 +52,8 @@ namespace Gameserver
         {
 
             byte[] AudioRecieved = _packet.ToArray();
-            Console.WriteLine("i recieved audio no what the fuck you want me to do?");
-            ServerSend.SendAduioToPlayers(AudioRecieved, _fromClient);
+            Console.WriteLine("i recieved audio no what the fuck you want me to with this :" + AudioRecieved.Length);
+            ServerSend.SendAudioToPlayers(AudioRecieved, _fromClient);
         }
     }
 }

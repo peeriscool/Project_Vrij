@@ -14,7 +14,7 @@ public enum ServerPackets
     playerRotation,
     sendplayernames,
     startgame,
-    SendAduioToPlayers,
+    SendAudioToPlayers,
 }
 
 /// <summary>Sent from client to server.</summary>

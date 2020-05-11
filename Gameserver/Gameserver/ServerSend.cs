@@ -35,6 +35,7 @@ namespace Gameserver
                 }
 
             }
+           
 
         }
         private static void SendUDPDataToAll(Packet _packet) //send packet to all players
@@ -140,17 +141,16 @@ namespace Gameserver
                 SendTCPDataToAll(_packet);
             }
         }
-        public static void SendAduioToPlayers(byte [] AduioBytes, int _myId)
+        public static void SendAudioToPlayers(byte [] AduioBytes, int _myId) // SendTCPDataToAll ---> Server.clients[i].SendData SENDDATA ADDS 8 BYTES? WTF!
+        {
+            
+            using (Packet _packet = new Packet((int)ServerPackets.SendAudioToPlayers))
             {
-            using (Packet _packet = new Packet((int)ServerPackets.SendAduioToPlayers))
-            {
-               
-               
-                _packet.Write(AduioBytes.Length);
                 _packet.Write(AduioBytes);
-                // SendTCPDataToAll(_myId,_packet); //except sender
-                SendTCPDataToAll(_packet);
+                 SendTCPDataToAll(_myId,_packet); //except sender
+                //SendTCPDataToAll(_packet);
             }
+            Console.WriteLine("sending audio bytes:"+AduioBytes.Length);
         }
         #endregion
     }

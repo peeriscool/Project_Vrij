@@ -13,7 +13,7 @@ namespace Gameserver
         playerRotation,
         sendplayernames,
         StartGame,
-        SendAduioToPlayers,
+        SendAudioToPlayers,
     }
 
     /// <summary>Sent from client to server.</summary>

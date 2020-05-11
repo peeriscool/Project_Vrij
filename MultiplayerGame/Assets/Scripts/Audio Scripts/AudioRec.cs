@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Linq;
 public class AudioRec : MonoBehaviour
 {
 
@@ -38,47 +39,40 @@ public class AudioRec : MonoBehaviour
             currCountdownValue--;
         }
         Debug.Log("TimerDone");
-        Byte[] WavInBytes =  WavUtility.FromAudioClip(myAudioClip); //convert in to byte[]
-      //  AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes); //convert byte[] in audioclip
-        //-----------------------------------------------------------------------------------------------
+        Byte[] WavInBytes =  WavUtility.FromAudioClip(myAudioClip);
+        SavWav.Save("audiokutzooi", myAudioClip);
+        //convert in to byte[]
+        //  AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes); //convert byte[] in audioclip
+        //--------------------------------------playback audio that was just recorded---------------------------------------------------------
+        /*
+        AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes);
+        AudioSource playaudio = GetComponent<AudioSource>();
+        playaudio.clip = notmyAudioClip;
+        playaudio.Play();
+        
+        */
         ClientSend.SendAudioBytes(WavInBytes);
-
-      //  AudioSource playaudio = GetComponent<AudioSource>();
-      //  playaudio.clip = notmyAudioClip;
-      //  playaudio.Play();
-      ////  MakeFloatArray();
     }
     public void ListenToAudioServer(Byte[] RecievedAudioData)
     {
-        Byte[] WavInBytes = RecievedAudioData; //convert in to byte[]
-        AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes); //convert byte[] in audioclip
-        //-----------------------------------------------------------------------------------------------
-        ClientSend.SendAudioBytes(WavInBytes);
+        Debug.Log("Hoi ik heb byte array gevonden, nu nog omzetten in werkend geluid " + RecievedAudioData.Length);
 
+
+        //code for removing bytes from the recievedAudio
+
+        byte[] doritos = new byte[RecievedAudioData.Length - 12];
+        Array.Copy(RecievedAudioData, 12, doritos, 0, doritos.Length);
+        Debug.Log("skipped first 4 " + doritos.Length);
+        AudioClip notmyAudioClip = WavUtility.ToAudioClip(doritos); //convert byte[] in audioclip 
+
+
+
+        //AudioClip testng = WavUtility.ToAudioClip(Application.dataPath + "doritos.wav");
         AudioSource playaudio = GetComponent<AudioSource>();
         playaudio.clip = notmyAudioClip;
         playaudio.Play();
     }
-
-   // experemental code of converting.wav to a float array
-    //void MakeFloatArray()
-    //{
-        
-    //    // AudioSource audioSource = GetComponent<AudioSource>();
-    //    float[] samples = new float[myAudioClip.samples * myAudioClip.channels];
-    //    myAudioClip.GetData(samples, 0);
-    //    for (int i = 0; i < samples.Length; ++i)
-    //    {
-    //        samples[i] = samples[i] * 0.5f;
-    //    }
-
-    //    myAudioClip.SetData(samples, 0);
-
-    //    Byte[] byteArray = new byte[samples.Length * 4];
-    //    Buffer.BlockCopy(samples, 0, byteArray, 0, byteArray.Length); //?
-    //    WriteTOByte(byteArray);
-    //    //saveFloatArrayToFile(samples);
-    //}
+  
    // void saveFloatArrayToFile(float[] data)
     //{
     //    BinaryWriter writer = new BinaryWriter(File.Open("name.txt", FileMode.Create));

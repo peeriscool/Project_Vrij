@@ -9,9 +9,9 @@ public class SceneManagerScript : MonoBehaviour
         if(start == true)
         {
             //SceneManager.DontDestroyOnLoad();
-            //DontDestroyOnLoad(GameObject.Find("ClientManager"));
-            GameObject.Find("Menu").SetActive(false);
-            SceneManager.LoadScene("TvScene1", LoadSceneMode.Additive); //or additive load?
+            DontDestroyOnLoad(GameObject.Find("ClientManager"));
+            //GameObject.Find("Menu").SetActive(false);
+            SceneManager.LoadScene("TvScene1", LoadSceneMode.Single); //or additive load?
             
         }
     }

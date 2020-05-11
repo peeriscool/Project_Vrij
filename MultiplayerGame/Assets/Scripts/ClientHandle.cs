@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Net;
+using System;
+using System.Linq;
 public class ClientHandle : MonoBehaviour
 {
     public static void Welcome(Packet _packet)
@@ -56,11 +58,20 @@ public class ClientHandle : MonoBehaviour
             SceneManagerScript.EndLobby(true);
         }
     }
-    public static void SendAudioTplayers(Packet _packet)
+    public static void SendAudioToPlayers(Packet _packet)
     {
-        int length = _packet.ReadInt();
-        byte[] RecievedAudio = _packet.ReadBytes(0);
-        
-        GameObject.Find("scriptholder").GetComponent<AudioRec>().ListenToAudioServer(RecievedAudio);
+        byte[] RecievedAudio = _packet.ToArray();
+        Debug.Log(RecievedAudio.Length);
+        GameObject.Find("ScriptHolder").GetComponent<AudioRec>().ListenToAudioServer(RecievedAudio);
+        //AudioClip notmyAudioClip = WavUtility.ToAudioClip(RecievedAudio);
+        // byte[] correctlength = RecievedAudio.Skip(4).ToArray();
+        //   System.IO.File.WriteAllBytes("yourfilepath.wav", RecievedAudio);
+        //AudioClip notmyAudioClip = WavUtility.ToAudioClip(correctlength);
+        //// SavWav.Save("Recordingfile", notmyAudioClip);
+        //   AudioSource playaudio = new AudioSource();
+        //   playaudio.clip = notmyAudioClip;
+        //   playaudio.Play();
+        // //GameObject audio = GameObject.FindGameObjectWithTag("Audio");
+        // //audio.GetComponent<AudioRec>().ListenToAudioServer(RecievedAudio);
     }
 }
