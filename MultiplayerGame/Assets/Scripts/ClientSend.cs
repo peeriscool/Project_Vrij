@@ -60,7 +60,7 @@ public class ClientSend : MonoBehaviour
         using (Packet _packet = new Packet((int)ClientPackets.PlayerReady))
         {
 
-            _packet.Write(Client.instance.myid);
+           // _packet.Write(Client.instance.myid);
             _packet.Write(status);
 
             SendTCPData(_packet);

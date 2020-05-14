@@ -62,6 +62,8 @@ public class UIManager : MonoBehaviour
         {
             Ready.isOn = false;
             toggle = true;
+            Debug.Log("not ready ");
+            ClientSend.PlayerReady(false);
         }
        
     }

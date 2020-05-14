@@ -70,6 +70,7 @@ namespace Gameserver
                     if (_bytelength <= 0)
                     {
                         Server.clients[id].Disconnect();
+                        Lobby.RemovePlayer(id);
                         return;
                     }
                     byte[] _data = new Byte[_bytelength];
@@ -133,6 +134,7 @@ namespace Gameserver
                 recievedData = null;
                 receiveBuffer = null;
                 socket = null;
+                
             }
         }
         public class UDP
