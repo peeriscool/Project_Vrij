@@ -11,7 +11,19 @@ public class AudioRec : MonoBehaviour
     AudioClip myAudioClip;
     public int cliplenght;
     void Start() { }
-    void Update() { }
+    void Update()
+    {
+        //if (Input.GetKeyDown("a"))
+        //{
+        //    //start recording
+        //    RecordWhiledicksa(cliplenght, true);
+        //}
+        //if(Input.GetKeyUp("a"))
+        //{
+        //    //stop recording
+        //    RecordWhiledicksa(cliplenght, false);
+        //}
+    }
 
     void OnGUI()
     {
@@ -53,6 +65,38 @@ public class AudioRec : MonoBehaviour
         */
         ClientSend.SendAudioBytes(WavInBytes);
     }
+    //public void RecordWhiledicksa(float countdownValue, bool status)
+    //{
+    //    while (status)
+    //    {
+    //        myAudioClip = Microphone.Start(null, false, cliplenght, 44100);
+    //        currCountdownValue = countdownValue;
+    //        while (currCountdownValue > 0)
+    //      //  {
+    //            Debug.Log("Countdown: " + currCountdownValue);
+    //           // yield return new WaitForSeconds(1);
+    //        //    currCountdownValue--;
+    //       // }
+            
+    //    }
+    //    Debug.Log("TimerDone");
+    //    Byte[] WavInBytes = WavUtility.FromAudioClip(myAudioClip);
+    //    //  ClientSend.SendAudioBytes(WavInBytes);
+    //    AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes);
+    //    AudioSource playaudio = GetComponent<AudioSource>();
+    //    playaudio.clip = notmyAudioClip;
+    //    playaudio.Play();
+    //}
+
+    //convert in to byte[]
+    //  AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes); //convert byte[] in audioclip
+    //--------------------------------------playback audio that was just recorded---------------------------------------------------------
+    // /*
+
+
+    //  */
+    // ClientSend.SendAudioBytes(WavInBytes);
+
     public void ListenToAudioServer(Byte[] RecievedAudioData)
     {
         Debug.Log("Hoi ik heb byte array gevonden, nu nog omzetten in werkend geluid " + RecievedAudioData.Length);
@@ -72,11 +116,18 @@ public class AudioRec : MonoBehaviour
         playaudio.clip = notmyAudioClip;
         playaudio.Play();
     }
-  
-   // void saveFloatArrayToFile(float[] data)
+    public void ListenToAudioInternalServer(Byte[] RecievedAudioData)
+    {
+        Debug.Log("Hoi ik heb byte array gevonden, nu nog omzetten in werkend geluid " + RecievedAudioData.Length);
+        AudioClip notmyAudioClip = WavUtility.ToAudioClip(RecievedAudioData); //convert byte[] in audioclip 
+        AudioSource playaudio = GetComponent<AudioSource>();
+        playaudio.clip = notmyAudioClip;
+        playaudio.Play();
+    }
+    // void saveFloatArrayToFile(float[] data)
     //{
     //    BinaryWriter writer = new BinaryWriter(File.Open("name.txt", FileMode.Create));
-       
+
     //    foreach (float item in data)
     //    {
     //        writer.Write(item);
