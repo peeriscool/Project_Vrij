@@ -30,4 +30,21 @@ public class GameMenuScript : MonoBehaviour
     { SceneManager.LoadScene("WinningVideoScene", LoadSceneMode.Single); }
     public void LoadMenuScene()
     { SceneManager.LoadScene("StartMenu", LoadSceneMode.Single); }
+    public void LoadGameScene(string PlayerScene) 
+    {SceneManager.LoadScene(PlayerScene, LoadSceneMode.Single); }
+
+    //overload method als ik de episode naam al zou weten Sendbuttonscript.SendButtonIsclicked()
+    public void LoadGameScene(string episodename, string PlayerScene)
+    { UserDataAcrossScenes.Episodename = episodename; SceneManager.LoadScene(PlayerScene, LoadSceneMode.Single); }
+
+    public void EndLobby(bool start)
+    {
+        if (start == true)
+        {
+            //SceneManager.DontDestroyOnLoad();
+            DontDestroyOnLoad(GameObject.Find("ClientManager"));
+            //GameObject.Find("Menu").SetActive(false);
+            SceneManager.LoadScene("EpisodeNamingScene", LoadSceneMode.Single); //or additive load?
+        }
+    }
 }

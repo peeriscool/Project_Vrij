@@ -14,6 +14,7 @@ namespace Gameserver
         sendplayernames,
         StartGame,
         SendAudioToPlayers,
+        GameCode,
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -130,6 +131,10 @@ namespace Gameserver
         {
             buffer.AddRange(_value);
         }
+        //public void Write(int[] _value) //peertesting int[] sending, but no
+        //{
+        //    buffer.AddRange(_value);
+        //}
         /// <summary>Adds a short to the packet.</summary>
         /// <param name="_value">The short to add.</param>
         public void Write(short _value)

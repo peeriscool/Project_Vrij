@@ -141,6 +141,19 @@ namespace Gameserver
                 SendTCPDataToAll(_packet);
             }
         }
+        public static void GameCode(int[] gamecode)
+        {
+            //all players are ready send code to end lobby and start game
+            //maybe make a overload method for ending rounds?
+            // byte[] result = new byte[gamecode.Length * sizeof(int)];
+            // Buffer.BlockCopy(gamecode, 0, result, 0, result.Length);
+          string gamecodez =  string.Join("", gamecode);
+            using (Packet _packet = new Packet((int)ServerPackets.GameCode))
+            {
+                _packet.Write(gamecodez);
+                SendTCPDataToAll(_packet);
+            }
+        }
         public static void SendAudioToPlayers(byte [] AduioBytes, int _myId) // SendTCPDataToAll ---> Server.clients[i].SendData SENDDATA ADDS 8 BYTES? WTF!
         {
             

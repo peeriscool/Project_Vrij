@@ -48,6 +48,8 @@ public class ClientHandle : MonoBehaviour
         Debug.Log(readnames);
 
         GameObject.Find("Menu").GetComponent<UIManager>().Fillplayerlist(readnames);
+
+
     }
     public static void StartGame(Packet _packet)
     {
@@ -55,7 +57,9 @@ public class ClientHandle : MonoBehaviour
         if (_packet.ReadBool() == true)
         {
             //code for starting game
-            SceneManagerScript.EndLobby(true);
+          //  SceneManagerScript.EndLobby(true);
+            GameMenuScript endlobby = new GameMenuScript();
+            endlobby.EndLobby(true);
         }
     }
     public static void SendAudioToPlayers(Packet _packet)
@@ -63,6 +67,7 @@ public class ClientHandle : MonoBehaviour
         byte[] RecievedAudio = _packet.ToArray();
         Debug.Log(RecievedAudio.Length);
         GameObject.Find("ScriptHolder").GetComponent<AudioRec>().ListenToAudioServer(RecievedAudio);
+
         //AudioClip notmyAudioClip = WavUtility.ToAudioClip(RecievedAudio);
         // byte[] correctlength = RecievedAudio.Skip(4).ToArray();
         //   System.IO.File.WriteAllBytes("yourfilepath.wav", RecievedAudio);
@@ -73,5 +78,21 @@ public class ClientHandle : MonoBehaviour
         //   playaudio.Play();
         // //GameObject audio = GameObject.FindGameObjectWithTag("Audio");
         // //audio.GetComponent<AudioRec>().ListenToAudioServer(RecievedAudio);
+    }
+
+    public static void GameCode(Packet _packet)
+    {
+        string gamecode = _packet.ReadString();
+        int myInt;
+        int[] array = gamecode.ToCharArray().Where(x =>
+        int.TryParse(x.ToString(), out myInt)).Select(x =>
+        int.Parse(x.ToString())).ToArray();
+
+
+        UserDataAcrossScenes.gamecode = array;
+        foreach (int i in UserDataAcrossScenes.gamecode)
+        {
+            Debug.Log(i);
+        }
     }
 }

@@ -29,9 +29,10 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
+        //devmode cheat button
         if(Input.GetKeyDown(KeyCode.F))
         {
-            SceneManager.LoadScene("TvScene1",LoadSceneMode.Single);
+            SceneManager.LoadScene("EpisodeNamingScene", LoadSceneMode.Single);
         }
     }
     public void ConnectedToServer()
@@ -44,6 +45,17 @@ public class UIManager : MonoBehaviour
         usernameField.interactable = false;
         Refresher.interactable = true;
         Client.instance.ConnectedToServer();
+        //StartCoroutine(Countdown(1));
+        // IEnumerator Countdown(float Time)
+        //{
+        //    while (Time > 0)
+        //    {
+        //        yield return new WaitForSeconds(1f);
+        //        Time--;
+        //    }
+        //    ClientSend.PlayerReady(false);
+        //}
+       
         //Client.instance.RefreshPlayerList(); //initial load of online plyers on the server
     }
     // #region 
