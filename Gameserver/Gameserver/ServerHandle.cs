@@ -34,11 +34,11 @@ namespace Gameserver
             }
             Quaternion _rotation = _packet.ReadQuaternion(); //reads out the rotation of playermovement method form client
 
-            Server.clients[_fromClient].player.SetInput(_inputs,_rotation);
+            Server.clients[_fromClient].player.SetInput(_inputs, _rotation);
         }
-        public static void GetListOfPlayers(int _fromClient, Packet _packet) 
+        public static void GetListOfPlayers(int _fromClient, Packet _packet)
         {
-           // Console.WriteLine("recieved");
+            // Console.WriteLine("recieved");
             ServerSend.SendPlayerNames(_fromClient);
         }
         public static void PlayerReady(int _fromClient, Packet _packet)
@@ -54,6 +54,18 @@ namespace Gameserver
             byte[] AudioRecieved = _packet.ToArray();
             Console.WriteLine("i recieved audio no what the fuck you want me to with this :" + AudioRecieved.Length);
             ServerSend.SendAudioToPlayers(AudioRecieved, _fromClient);
+        }
+
+        public static void SendEpisodeName(int _fromClient, Packet _packet)
+        {
+            int _clientIdCheck = _packet.ReadInt(); // not sure if the player id int fucks up the string so i try readingn a int first before string
+            string episodename = _packet.ReadString();
+            Console.WriteLine(episodename + " recieved episodename");
+            //episode name recieved
+            //send episode name to the correct user based on the Gamecode
+            int SendToPlayerId = RememberGameCode.parseEpisodeName(_fromClient);
+            Console.WriteLine("Sending episodename to player" + SendToPlayerId);
+            ServerSend.SendEpisodeNameback(SendToPlayerId, episodename);
         }
     }
 }

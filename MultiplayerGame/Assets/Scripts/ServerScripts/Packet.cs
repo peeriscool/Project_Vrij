@@ -26,6 +26,7 @@ public enum ClientPackets
     GetListOfPlayers,
     PlayerReady,
     SendAudioBytes,
+    SendEpisodeName,
 }
 public class Packet : IDisposable
     {

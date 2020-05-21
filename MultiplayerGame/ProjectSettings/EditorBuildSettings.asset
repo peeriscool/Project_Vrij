@@ -27,12 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/WinningVideoScene.unity
     guid: ad242366878ebcf4b8d45603865f0f5e
   - enabled: 1
-    path: Assets/Scenes/CorrectNamedScenes/teleshopping.unity
-    guid: 9618a26eb076b394d87eed14bbc31b9a
+    path: Assets/Scenes/CorrectNamedScenes/kookingshow.unity
+    guid: ec07a93b252292745abb52a55338337e
   - enabled: 1
     path: Assets/Scenes/CorrectNamedScenes/Talkshow.unity
-    guid: 14e44fe7af29713489503e0e9cd83bb9
+    guid: 663fc37c1d2da0c46b10539c8694d57c
   - enabled: 1
-    path: Assets/Scenes/CorrectNamedScenes/kookingshow.unity
-    guid: 415321930fc189b478c203c91db5b843
+    path: Assets/Scenes/CorrectNamedScenes/teleshopping.unity
+    guid: afe9063f409609f4491c5095c94809cd
   m_configObjects: {}

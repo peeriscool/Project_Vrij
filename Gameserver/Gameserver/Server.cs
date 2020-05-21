@@ -16,7 +16,7 @@ namespace Gameserver
         private static UdpClient udplistner;
 
         public delegate void PacketHandler(int _fromClient, Packet _packet);
-        public static Dictionary<int,PacketHandler> packethandlers;
+        public static Dictionary<int, PacketHandler> packethandlers;
         public static void start(int _maxPlayers, int _Port) //setup server
         {
             MaxPlayers = _maxPlayers;
@@ -31,7 +31,7 @@ namespace Gameserver
             Console.WriteLine($"Server gestart op {Port}.");
 
         }
-        private static void TCPConnectCallback (IAsyncResult _result) //de callback voor de tcp
+        private static void TCPConnectCallback(IAsyncResult _result) //de callback voor de tcp
         {
             TcpClient _cLient = tcplistner.EndAcceptTcpClient(_result); //store tcp instance van de tcpaccepttcpclient method
             tcplistner.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null); //conncetion met ip accept metohd
@@ -46,7 +46,7 @@ namespace Gameserver
             }
             Console.WriteLine($"{_cLient.Client.RemoteEndPoint} failed to conncect: Server is full!");
         }
-        private static void UDPRecieveCallback (IAsyncResult _result)
+        private static void UDPRecieveCallback(IAsyncResult _result)
         {
             try
             {
@@ -54,16 +54,16 @@ namespace Gameserver
                 byte[] _data = udplistner.EndReceive(_result, ref _clientEndPoint);
                 udplistner.BeginReceive(UDPRecieveCallback, null);
 
-                if (_data.Length <4) { return; }
+                if (_data.Length < 4) { return; }
 
                 using (Packet _packet = new Packet(_data))
                 {
                     int _ClientiD = _packet.ReadInt();
-                    if(_ClientiD == 0)
+                    if (_ClientiD == 0)
                     {
                         return;
                     }
-                    if(clients[_ClientiD].udp.endpoint == null)
+                    if (clients[_ClientiD].udp.endpoint == null)
                     {
                         clients[_ClientiD].udp.Connect(_clientEndPoint);
                         return;
@@ -78,15 +78,15 @@ namespace Gameserver
             catch (Exception _ex)
             {
 
-                Console.WriteLine("udp error for recieving:",_ex);
+                Console.WriteLine("udp error for recieving:", _ex);
             }
         }
 
-        public static void SendUDPData(IPEndPoint _clientEndPoint,Packet _packet)
+        public static void SendUDPData(IPEndPoint _clientEndPoint, Packet _packet)
         {
             try
             {
-                if ( _clientEndPoint != null)
+                if (_clientEndPoint != null)
                 {
                     udplistner.BeginSend(_packet.ToArray(), _packet.Length(), _clientEndPoint, null, null);
                 }
@@ -111,6 +111,7 @@ namespace Gameserver
                 { (int)ClientPackets.getlistofplayers,ServerHandle.GetListOfPlayers},
                 { (int)ClientPackets.playerready,ServerHandle.PlayerReady},
                 { (int)ClientPackets.sendaudiobytes,ServerHandle.SendAudioBytes},
+                { (int) ClientPackets.sendepisodename,ServerHandle.SendEpisodeName}
             };
             Console.WriteLine("Initialized packets");
         }

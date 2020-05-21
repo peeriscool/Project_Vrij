@@ -15,6 +15,7 @@ namespace Gameserver
         StartGame,
         SendAudioToPlayers,
         GameCode,
+        SendEpisodeNameback,
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -25,6 +26,7 @@ namespace Gameserver
         getlistofplayers,
         playerready,
         sendaudiobytes,
+        sendepisodename,
     }
 
     public class Packet : IDisposable
@@ -180,7 +182,7 @@ namespace Gameserver
             Write(_value.X);
             Write(_value.Y);
             Write(_value.Z);
-           
+
         }
 
         /// <summary>Adds a vector 3 to the packet.</summary>
@@ -191,7 +193,7 @@ namespace Gameserver
             Write(_value.Y);
             Write(_value.Z);
             Write(_value.W);
-           
+
         }
         #endregion
 

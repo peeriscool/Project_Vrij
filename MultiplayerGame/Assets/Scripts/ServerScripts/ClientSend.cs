@@ -5,12 +5,12 @@ using System.Net.Sockets;
 
 public class ClientSend : MonoBehaviour
 {
-    private static void SendTCPData(Packet _packet) 
+    private static void SendTCPData(Packet _packet)
     {
         _packet.WriteLength();
         Client.instance.tcp.SendData(_packet);
     }
-    private static void SendUDPData(Packet _packet )
+    private static void SendUDPData(Packet _packet)
     {
         _packet.WriteLength();
         Client.instance.udp.SendData(_packet);
@@ -20,7 +20,7 @@ public class ClientSend : MonoBehaviour
     {
         using (Packet _packet = new Packet((int)ClientPackets.welcomeReceived))
         {
-            _packet.Write(Client.instance.myid );
+            _packet.Write(Client.instance.myid);
             _packet.Write(UIManager.instance.usernameField.text);
 
             SendTCPData(_packet);
@@ -60,7 +60,7 @@ public class ClientSend : MonoBehaviour
         using (Packet _packet = new Packet((int)ClientPackets.PlayerReady))
         {
 
-           // _packet.Write(Client.instance.myid);
+            // _packet.Write(Client.instance.myid);
             _packet.Write(status);
 
             SendTCPData(_packet);
@@ -72,13 +72,29 @@ public class ClientSend : MonoBehaviour
         //Debug.Log(Client.instance.ip);
         using (Packet _packet = new Packet((int)ClientPackets.SendAudioBytes))
         {
-           
+
             _packet.Write(Client.instance.myid);
             _packet.Write(AudioData);
             SendTCPData(_packet);
         }
         Debug.Log(AudioData.Length);
     }
+
+
+
+    public static void SendEpisodeName(string episodename)
+    {
+        //Debug.Log(Client.instance.ip);
+        using (Packet _packet = new Packet((int)ClientPackets.SendEpisodeName))
+        {
+
+            _packet.Write(Client.instance.myid);
+            _packet.Write(episodename);
+            SendTCPData(_packet);
+        }
+
+    }
+
     #endregion
     //private static void SendFile(Socket client, string fileName, byte[] bytes)
     //{

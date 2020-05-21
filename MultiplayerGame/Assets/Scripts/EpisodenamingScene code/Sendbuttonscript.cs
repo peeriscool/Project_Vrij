@@ -10,13 +10,15 @@ public class Sendbuttonscript : MonoBehaviour
     public Text allscenesloaded;
     public Text countdownObject;
     public Text ChannelNameText;
+    bool Textsend = false;
     private void Update()
     {
         //if all episode names are shown, display allscenesloaded.text en go to prep scene after a short countdown
         // StartCoroutine(Countdown(3));
-
- 
-            
+        if (UserDataAcrossScenes.Episodename != null && Textsend == true)
+        {
+            GoToScene();
+        }
 
     }
     private void Start()
@@ -41,14 +43,17 @@ public class Sendbuttonscript : MonoBehaviour
         inputfieldtext = inputfield.text;
         if (inputfieldtext != null)
         {
-            // GameMenuScript LoadGamescene = new GameMenuScript();
-            // LoadGamescene.LoadGameScene(inputfieldtext, "TvScene1"); // "TvScene1" should be replaced with the channelnaam of the player (NOT THE ONE YOU MAKE THE EPISODE NAME FOR)
-           string mijnscene = UserDataAcrossScenes.findyourscene(Client.instance.myid);
-            GameMenuScript loadmyscene = new GameMenuScript();
-            loadmyscene.LoadGameScene(mijnscene);
+            //episode naam sturen naar server en geven aan de correcte user
+            ClientSend.SendEpisodeName(inputfieldtext);
+            Textsend = true;
         }
     }
-
+    public void GoToScene()
+    {
+        string mijnscene = UserDataAcrossScenes.findyourscene(Client.instance.myid);
+        GameMenuScript loadmyscene = new GameMenuScript();
+        loadmyscene.LoadGameScene(mijnscene);
+    }
     public IEnumerator Countdown(float Time)
     {
         while (Time > 0)

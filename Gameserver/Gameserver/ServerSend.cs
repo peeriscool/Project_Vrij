@@ -35,7 +35,7 @@ namespace Gameserver
                 }
 
             }
-           
+
 
         }
         private static void SendUDPDataToAll(Packet _packet) //send packet to all players
@@ -147,23 +147,33 @@ namespace Gameserver
             //maybe make a overload method for ending rounds?
             // byte[] result = new byte[gamecode.Length * sizeof(int)];
             // Buffer.BlockCopy(gamecode, 0, result, 0, result.Length);
-          string gamecodez =  string.Join("", gamecode);
+            string gamecodez = string.Join("", gamecode);
             using (Packet _packet = new Packet((int)ServerPackets.GameCode))
             {
                 _packet.Write(gamecodez);
                 SendTCPDataToAll(_packet);
             }
         }
-        public static void SendAudioToPlayers(byte [] AduioBytes, int _myId) // SendTCPDataToAll ---> Server.clients[i].SendData SENDDATA ADDS 8 BYTES? WTF!
+        public static void SendAudioToPlayers(byte[] AduioBytes, int _myId) // SendTCPDataToAll ---> Server.clients[i].SendData SENDDATA ADDS 8 BYTES? WTF!
         {
-            
+
             using (Packet _packet = new Packet((int)ServerPackets.SendAudioToPlayers))
             {
                 _packet.Write(AduioBytes);
-                 SendTCPDataToAll(_myId,_packet); //except sender
+                SendTCPDataToAll(_myId, _packet); //except sender
                 //SendTCPDataToAll(_packet);
             }
-            Console.WriteLine("sending audio bytes:"+AduioBytes.Length);
+            Console.WriteLine("sending audio bytes:" + AduioBytes.Length);
+        }
+
+        public static void SendEpisodeNameback(int SendToThisPlayer, string EpisodeName)
+        {
+            Console.WriteLine(EpisodeName);
+            using (Packet _packet = new Packet((int)ServerPackets.SendEpisodeNameback))
+            {
+                _packet.Write(EpisodeName);
+                SendTCPData(SendToThisPlayer, _packet);
+            }
         }
         #endregion
     }
