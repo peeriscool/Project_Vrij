@@ -11,8 +11,14 @@ public class UIManager : MonoBehaviour
     public InputField usernameField;
     public Text Names;
     public Button Refresher;
-    public Toggle Ready;
+    public Toggle Ready; 
     bool toggle = true;
+    Color defaultbuttoncolor;
+    public Image ReadyButtonImage;
+
+    bool connected = false;
+    public Text playercounttext;
+    Text newplayercounttext;
     private void Awake()
     {
         Refresher.interactable = false;
@@ -26,15 +32,10 @@ public class UIManager : MonoBehaviour
             //instance already exists
             Destroy(this);
         }
+         defaultbuttoncolor = ReadyButtonImage.color;
+        
     }
-    private void Update()
-    {
-        //devmode cheat button
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            SceneManager.LoadScene("EpisodeNamingScene", LoadSceneMode.Single);
-        }
-    }
+
     public void ConnectedToServer()
     {
         if(usernameField.text == null || usernameField.text == "Username...")
@@ -45,43 +46,76 @@ public class UIManager : MonoBehaviour
         usernameField.interactable = false;
         Refresher.interactable = true;
         Client.instance.ConnectedToServer();
-        //StartCoroutine(Countdown(1));
-        // IEnumerator Countdown(float Time)
-        //{
-        //    while (Time > 0)
-        //    {
-        //        yield return new WaitForSeconds(1f);
-        //        Time--;
-        //    }
-        //    ClientSend.PlayerReady(false);
-        //}
-       
+        
+        //Client.instance.RefreshPlayerList(); //initial load of online plyers on the server
+    }
+
+    public void ConnectedToServer(bool ready)
+    {
+        if (usernameField.text == null || usernameField.text == "Username...")
+        {
+            usernameField.text = "NoName";
+        }
+        startMenu.SetActive(false);
+        usernameField.interactable = false;
+        Refresher.interactable = true;
+        Client.instance.ConnectedToServer();
+
         //Client.instance.RefreshPlayerList(); //initial load of online plyers on the server
     }
     // #region 
     //peer method
-    public void RefreshPlayerList() //refresh button
+    public void RefreshPlayerList() //request server for names
     {
         Names.text = "";
         ClientSend.GetListOfPlayers();
     }
-    public void Fillplayerlist(string name) //refresh button
+    public void Fillplayerlist(string name,int playercount) //is called from the server (client handle)
     {
         Names.text += name;
+        newplayercounttext = playercounttext;
+        newplayercounttext.text = playercount + playercounttext.text.Substring(1); //Retrieves a substring from this instance. The substring starts at a specified character position and continues to the end of the string.
     }
-    public void ReadyToggle()
+    //public void ReadyToggle()
+    //{
+    //    if (toggle == true)
+    //    {
+    //        Ready.isOn = true;
+    //        toggle = false;
+    //        ClientSend.PlayerReady(true);
+    //    }
+    //   else if (toggle == false)
+    //    {
+    //        Ready.isOn = false;
+    //        toggle = true;
+    //        Debug.Log("not ready ");
+    //        ClientSend.PlayerReady(false);
+    //    }
+       
+    //}
+    public void ReadyButton()
     {
+       
+        if(connected == false)
+        {
+            ConnectedToServer(true);
+            connected = true;
+        } 
+       
         if (toggle == true)
-        {
-            Ready.isOn = true;
+        {  
             toggle = false;
+            ReadyButtonImage.color = Color.green;
             ClientSend.PlayerReady(true);
+            Debug.Log("I'm ready!");
         }
-       else if (toggle == false)
+        else if (toggle == false)
         {
-            Ready.isOn = false;
             toggle = true;
-            Debug.Log("not ready ");
+            Debug.Log("not ready, stop  it plz ");
+
+
+            ReadyButtonImage.color = defaultbuttoncolor;
             ClientSend.PlayerReady(false);
         }
        

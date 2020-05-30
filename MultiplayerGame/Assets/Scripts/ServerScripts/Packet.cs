@@ -16,6 +16,7 @@ public enum ServerPackets
     startgame,
     SendAudioToPlayers,
     gamecode,
+    sendepisodenameback,
 }
 
 /// <summary>Sent from client to server.</summary>

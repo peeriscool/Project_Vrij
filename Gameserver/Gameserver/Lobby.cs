@@ -6,10 +6,10 @@ namespace Gameserver
     static class Lobby
     {
         static List<ReadyPlayer> playerlist = new List<ReadyPlayer>(); //list of playerstatus
-        static List<ReadyPlayer> readyplayer = new List<ReadyPlayer>(); //list of playerstatus
+       // static List<ReadyPlayer> readyplayer = new List<ReadyPlayer>(); //list of playerstatus
         static int playersready = 0;
         static int minimalplayers = 1; //Fix!: 0 is actualy 1 players : 0 and 1
-
+        static bool doesplayerexist;
         static List<string> NATO = new List<string>()
         {
             "Alfa", //0
@@ -22,7 +22,6 @@ namespace Gameserver
             "Hotel",
             "India" //8
         };
-        static int PlayerIndex = 0;
       
         public static void RecievePlayerStatus(int _fromClient, bool status)
         {  
@@ -36,44 +35,57 @@ namespace Gameserver
             ReadyPlayer activerequest = new ReadyPlayer(fromClient, _status);
             activerequest.NatoName = NATO[fromClient-1];
 
-           if(playerlist.Count == 0) //first player
-           {
-               playerlist.Add(activerequest);
-           }
+           //if(playerlist == null) //first player
+           //{
+           //    playerlist.Add(activerequest);
+           //}
 
-            if (playerlist.Contains(activerequest)) //kijkt alleen naar exact de zelfde user dus niet naar een gechangede status!
-            {
-                Console.WriteLine("list contains activerequest");
-            }
+            doesplayerexist = false;
 
 
-            else //new user detected
-            {
-                if (activerequest.NatoName == "Alfa")
+                foreach (ReadyPlayer playercheck in playerlist) 
                 {
-                    //first player no need to ad
+                    if(playercheck.NatoName == activerequest.NatoName) //check if a nato name is equal to any index of players
+                    {
+                        //known user
+                        doesplayerexist = true;
+                        //check for change in status
+                        
+                    }
+                   
                 }
-                else 
+           
+            if (doesplayerexist == false)
                 {
                     playerlist.Add(activerequest);
+                    Console.WriteLine(activerequest.NatoName + " " + fromClient + "signed in");
                 }
+              
+
+            if (doesplayerexist == true)
+            {
+                foreach (var item in playerlist)
+                {
+                    Console.WriteLine(item + " Listed display before the questionable code");
+                }
+                if (activerequest.ReadyStatus != playerlist[fromClient - 1].ReadyStatus) //control if the status was changed
+                {
+                    Console.WriteLine("changed status");
+                    playerlist[fromClient - 1].ReadyStatus = activerequest.ReadyStatus;
+                }
+                
             }
 
-            if (activerequest.ReadyStatus != playerlist[fromClient - 1].ReadyStatus) //control if the status was changed
-            {
-                Console.WriteLine("changed status");
-                playerlist[fromClient - 1].ReadyStatus = activerequest.ReadyStatus;
-            }
 
             int playersreadyint = 0;
-            foreach (var item in playerlist)
+            foreach (ReadyPlayer item in playerlist)
             {
                 if(item.ReadyStatus == true)
                 {
                     playersreadyint += 1;
                 }
             }
-            Console.WriteLine(playersreadyint + "players are ready");
+            Console.WriteLine(playersreadyint + "players are ready of the " + playerlist.Count);
 
 
             if (playersreadyint == playerlist.Count) //value is bugging with multiple players (keeps adding more ready players)
@@ -93,6 +105,7 @@ namespace Gameserver
                     //assign values to for determing who gets what scene
                     GameChannels test = new GameChannels(1);
                     int[] gamecode = test.getrandomvalue(playerlist.Count);
+                    RememberGameCode.activegamecode = gamecode;
                     ServerSend.GameCode(gamecode);
                     foreach (int item in gamecode)
                     {

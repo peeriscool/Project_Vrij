@@ -259,7 +259,7 @@ public class Client : MonoBehaviour
               { (int)ServerPackets.startgame, ClientHandle.StartGame },
               { (int)ServerPackets.SendAudioToPlayers, ClientHandle.SendAudioToPlayers },
               { (int)ServerPackets.gamecode, ClientHandle.GameCode},
-
+               { (int)ServerPackets.sendepisodenameback, ClientHandle.SendEpisodeNameBack},
         };
         Debug.Log("initialized packets.");
     }

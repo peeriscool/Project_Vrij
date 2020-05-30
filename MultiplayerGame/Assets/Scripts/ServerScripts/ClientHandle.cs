@@ -45,9 +45,10 @@ public class ClientHandle : MonoBehaviour
     {
         // int _id = _packet.ReadInt();
         string readnames = _packet.ReadString();
+        int playercount = _packet.ReadInt();
         Debug.Log(readnames);
 
-        GameObject.Find("Menu").GetComponent<UIManager>().Fillplayerlist(readnames);
+        GameObject.Find("Menu").GetComponent<UIManager>().Fillplayerlist(readnames, playercount);
 
 
     }
@@ -94,5 +95,15 @@ public class ClientHandle : MonoBehaviour
         {
             Debug.Log(i);
         }
+    }
+
+
+    public static void SendEpisodeNameBack(Packet _packet) //should only be recieved by one user
+    {
+        string MyEpisodeName = _packet.ReadString();
+        Debug.Log(MyEpisodeName + "dit is de naam voor jouw scene!");
+        UserDataAcrossScenes.Episodename = MyEpisodeName;
+        // GameObject.Find("Main Camera").AddComponent<ListenToEpisodeName>();
+
     }
 }

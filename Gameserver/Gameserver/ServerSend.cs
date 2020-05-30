@@ -109,6 +109,7 @@ namespace Gameserver
 
         public static void SendPlayerNames(int _toClient) //prints all the player names to the console
         {
+            int count = 0;
             string Playernames = "";
             for (int i = 1; i < Server.clients.Count; i++)
             {
@@ -116,6 +117,7 @@ namespace Gameserver
                 {
                     if (Server.clients[i].player.username != null)
                     {
+                        count++;
                         Console.WriteLine(Server.clients[i].player.username);
                         Playernames += Server.clients[i].player.username.ToString() + ",";
                     }
@@ -126,6 +128,7 @@ namespace Gameserver
             using (Packet _packet = new Packet((int)ServerPackets.sendplayernames))
             {
                 _packet.Write(Playernames);
+                _packet.Write(count);
                 _packet.Write(_toClient);
                 SendTCPData(_toClient, _packet);
             }
