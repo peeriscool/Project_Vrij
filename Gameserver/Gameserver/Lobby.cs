@@ -123,7 +123,6 @@ namespace Gameserver
         static public void RemovePlayer(int _fromClient)
         {
             playerlist.RemoveAt(_fromClient - 1);
-
         }
     }
 

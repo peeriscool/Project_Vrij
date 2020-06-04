@@ -260,6 +260,8 @@ public class Client : MonoBehaviour
               { (int)ServerPackets.SendAudioToPlayers, ClientHandle.SendAudioToPlayers },
               { (int)ServerPackets.gamecode, ClientHandle.GameCode},
                { (int)ServerPackets.sendepisodenameback, ClientHandle.SendEpisodeNameBack},
+                { (int)ServerPackets.RequestAudioForPlaybackRecieved, ClientHandle.SendEpisodeNameBack},
+               
         };
         Debug.Log("initialized packets.");
     }

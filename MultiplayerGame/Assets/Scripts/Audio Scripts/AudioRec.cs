@@ -4,12 +4,14 @@ using UnityEngine;
 using System.IO;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 public class AudioRec : MonoBehaviour
 {
 
     float currCountdownValue;
     AudioClip myAudioClip;
     public int cliplenght;
+    string ButtonText = "Record";
     void Start() { }
     void Update()
     {
@@ -27,7 +29,7 @@ public class AudioRec : MonoBehaviour
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(10, 10, 60, 50), "Record"))
+        if (GUI.Button(new Rect(10, 10, 100, 50), ButtonText))
         {
 
             StartCoroutine(RecordWhile(cliplenght));
@@ -38,6 +40,13 @@ public class AudioRec : MonoBehaviour
 
             
         }
+        if (GUI.Button(new Rect(10, 140, 60, 50), "End Scene"))
+        {
+            //TODO: what objects should be kept in the next scene?
+            SceneManager.LoadScene("PlaybackScene", LoadSceneMode.Single); //go to scene were you see other players arms move
+
+
+        }
     }
 
     public IEnumerator RecordWhile(float countdownValue)
@@ -47,11 +56,12 @@ public class AudioRec : MonoBehaviour
         while (currCountdownValue > 0)
         {
             Debug.Log("Countdown: " + currCountdownValue);
+            ButtonText = currCountdownValue.ToString();
             yield return new WaitForSeconds(1);
             currCountdownValue--;
         }
-        Debug.Log("TimerDone");
-        Byte[] WavInBytes =  WavUtility.FromAudioClip(myAudioClip);
+        ButtonText = "Record again?!";
+       Byte[] WavInBytes =  WavUtility.FromAudioClip(myAudioClip);
         SavWav.Save("audiokutzooi", myAudioClip);
         //convert in to byte[]
         //  AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes); //convert byte[] in audioclip

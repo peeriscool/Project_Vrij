@@ -338,12 +338,12 @@ PrefabInstance:
     - target: {fileID: 8629549789411390197, guid: ec3b8c3500784df47941441cf4ba2ac4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 12
+      value: -398
       objectReference: {fileID: 0}
     - target: {fileID: 8629549789411390197, guid: ec3b8c3500784df47941441cf4ba2ac4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 141
+      value: -74
       objectReference: {fileID: 0}
     - target: {fileID: 8629549789411390198, guid: ec3b8c3500784df47941441cf4ba2ac4,
         type: 3}
@@ -369,6 +369,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &263547213 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8629549788213636723, guid: ec3b8c3500784df47941441cf4ba2ac4,
+    type: 3}
+  m_PrefabInstance: {fileID: 263547211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &428317732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 428317733}
+  - component: {fileID: 428317735}
+  - component: {fileID: 428317734}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: EpisodeNameReciever
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &428317733
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428317732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 26}
+  m_LocalScale: {x: 3.6344, y: 3.6344, z: 3.6344}
+  m_Children: []
+  m_Father: {fileID: 263547213}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -398, y: 273}
+  m_SizeDelta: {x: 308.3, y: 94.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &428317734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428317732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "You\u2019re going to record the voice of the \r\nTeleShop channel\r\nthe
+    episode is called:\r\n"
+--- !u!222 &428317735
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428317732}
+  m_CullTransparentMesh: 0
 --- !u!1 &756805313
 GameObject:
   m_ObjectHideFlags: 0

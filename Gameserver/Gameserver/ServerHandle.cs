@@ -52,13 +52,14 @@ namespace Gameserver
         {
 
             byte[] AudioRecieved = _packet.ToArray();
-            Console.WriteLine("i recieved audio no what the fuck you want me to with this :" + AudioRecieved.Length);
+            Console.WriteLine("i recieved audio now what the fuck you want me to with this :" + AudioRecieved.Length);
+           AudioRecordings.AddvoiceRecord(AudioRecieved, _fromClient); //should have been reversed but o well
             ServerSend.SendAudioToPlayers(AudioRecieved, _fromClient);
         }
 
         public static void SendEpisodeName(int _fromClient, Packet _packet)
         {
-            int _clientIdCheck = _packet.ReadInt(); // not sure if the player id int fucks up the string so i try readingn a int first before string
+            int _clientIdCheck = _packet.ReadInt(); // not sure if the player id int fucks up the string so i try reading an int first before reading string
             string episodename = _packet.ReadString();
             Console.WriteLine(episodename + " recieved episodename");
             //episode name recieved
@@ -67,5 +68,21 @@ namespace Gameserver
             Console.WriteLine("Sending episodename to player" + SendToPlayerId);
             ServerSend.SendEpisodeNameback(SendToPlayerId, episodename);
         }
+        public static void RequestAudioForPlaybackRecieved(int _fromClient, Packet _packet)
+        {
+            int Dictonarykey = _packet.ReadInt() ;
+            try
+            {
+                byte[] requestedaudiofile = AudioRecordings.RecoredVoiceMessages[Dictonarykey];
+                ServerSend.SendAudioToPlayers(requestedaudiofile); //sends audio for everybody to hear!
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("no recorded audio found in dictonary");
+                throw;
+            }
+                
+        }
+
     }
 }

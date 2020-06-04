@@ -35,7 +35,6 @@ public class UIManager : MonoBehaviour
          defaultbuttoncolor = ReadyButtonImage.color;
         
     }
-
     public void ConnectedToServer()
     {
         if(usernameField.text == null || usernameField.text == "Username...")
@@ -95,18 +94,19 @@ public class UIManager : MonoBehaviour
     //}
     public void ReadyButton()
     {
-       
-        if(connected == false)
+
+        if (connected == false)
         {
             ConnectedToServer(true);
             connected = true;
-        } 
-       
+        }
+
         if (toggle == true)
         {  
             toggle = false;
             ReadyButtonImage.color = Color.green;
-            ClientSend.PlayerReady(true);
+           StartCoroutine(ExampleCoroutine(true));
+          
             Debug.Log("I'm ready!");
         }
         else if (toggle == false)
@@ -116,9 +116,20 @@ public class UIManager : MonoBehaviour
 
 
             ReadyButtonImage.color = defaultbuttoncolor;
-            ClientSend.PlayerReady(false);
+            StartCoroutine(ExampleCoroutine(false));
+           // ClientSend.PlayerReady(false);
         }
        
     }
+    IEnumerator ExampleCoroutine(bool status)
+    {
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
-}
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(0.1f);
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        ClientSend.PlayerReady(status);
+    }
+    }

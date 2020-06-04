@@ -67,7 +67,7 @@ public class ClientHandle : MonoBehaviour
     {
         byte[] RecievedAudio = _packet.ToArray();
         Debug.Log(RecievedAudio.Length);
-        GameObject.Find("ScriptHolder").GetComponent<AudioRec>().ListenToAudioServer(RecievedAudio);
+        GameObject.Find("ScriptHolder_InGame").GetComponent<AudioRec>().ListenToAudioServer(RecievedAudio);
 
         //AudioClip notmyAudioClip = WavUtility.ToAudioClip(RecievedAudio);
         // byte[] correctlength = RecievedAudio.Skip(4).ToArray();

@@ -168,7 +168,17 @@ namespace Gameserver
             }
             Console.WriteLine("sending audio bytes:" + AduioBytes.Length);
         }
+        public static void SendAudioToPlayers(byte[] AduioBytes) // SendTCPDataToAll ---> Server.clients[i].SendData SENDDATA ADDS 8 BYTES? WTF!
+        {
 
+            using (Packet _packet = new Packet((int)ServerPackets.SendAudioToPlayers))
+            {
+                _packet.Write(AduioBytes);
+                SendTCPDataToAll(_packet);
+
+            }
+            Console.WriteLine("sending audio bytes:" + AduioBytes.Length);
+        }
         public static void SendEpisodeNameback(int SendToThisPlayer, string EpisodeName)
         {
             Console.WriteLine(EpisodeName);

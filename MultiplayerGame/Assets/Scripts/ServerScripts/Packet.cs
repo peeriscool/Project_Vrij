@@ -17,6 +17,7 @@ public enum ServerPackets
     SendAudioToPlayers,
     gamecode,
     sendepisodenameback,
+    RequestAudioForPlaybackRecieved,
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -28,6 +29,7 @@ public enum ClientPackets
     PlayerReady,
     SendAudioBytes,
     SendEpisodeName,
+    requestAudioForPlayback,
 }
 public class Packet : IDisposable
     {

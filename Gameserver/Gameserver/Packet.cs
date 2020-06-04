@@ -16,6 +16,7 @@ namespace Gameserver
         SendAudioToPlayers,
         GameCode,
         SendEpisodeNameback,
+        RequestAudioForPlaybackRecieved,
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -27,6 +28,7 @@ namespace Gameserver
         playerready,
         sendaudiobytes,
         sendepisodename,
+        requestAudioForPlayback,
     }
 
     public class Packet : IDisposable

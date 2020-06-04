@@ -95,6 +95,16 @@ public class ClientSend : MonoBehaviour
 
     }
 
+    public static void requestAudioForPlayback(int DictonaryKey)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.requestAudioForPlayback))
+        {
+            _packet.Write(DictonaryKey);
+          //  _packet.Write(Client.instance.myid);
+            SendTCPData(_packet);
+        }
+
+    }
     #endregion
     //private static void SendFile(Socket client, string fileName, byte[] bytes)
     //{
