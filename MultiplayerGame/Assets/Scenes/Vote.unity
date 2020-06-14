@@ -813,6 +813,12 @@ PrefabInstance:
       propertyPath: buttonCount
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8662406631373698840, guid: ab8ac793de55c5344b97148d69830d4b,
+        type: 3}
+      propertyPath: winner
+      value: 
+      objectReference: {fileID: 4427398849812817060, guid: 4a281ac4be84566468d557b663d7d47b,
+        type: 3}
     - target: {fileID: 8662406631373698841, guid: ab8ac793de55c5344b97148d69830d4b,
         type: 3}
       propertyPath: m_LocalPosition.x

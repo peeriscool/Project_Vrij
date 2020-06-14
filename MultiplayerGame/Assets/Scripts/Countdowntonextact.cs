@@ -18,7 +18,7 @@ public class Countdowntonextact : MonoBehaviour
         StartCoroutine(scenelenght(lenght));
     }
     // Update is called once per frame
-    public IEnumerator scenelenght(float countdownValue)
+     IEnumerator scenelenght(float countdownValue)
     {
 
         currCountdownValue = countdownValue;

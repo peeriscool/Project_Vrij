@@ -250,6 +250,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScriptHolder_InGame
       objectReference: {fileID: 0}
+    - target: {fileID: 639852626711644948, guid: 54137acccaea5784983e95186a2309ee,
+        type: 3}
+      propertyPath: cliplenght
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54137acccaea5784983e95186a2309ee, type: 3}
 --- !u!1 &501610849 stripped

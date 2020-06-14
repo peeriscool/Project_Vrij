@@ -73,7 +73,7 @@ public class AudioRec : MonoBehaviour
     {
         Debug.Log("Hoi ik heb byte array gevonden, nu nog omzetten in werkend geluid " + RecievedAudioData.Length);
 
-        //code for removing bytes from the recievedAudio
+        //code for removing 12 bytes from the recievedAudio
         byte[] doritos = new byte[RecievedAudioData.Length - 12];
         Array.Copy(RecievedAudioData, 12, doritos, 0, doritos.Length);
         Debug.Log("skipped first 4 " + doritos.Length);
@@ -83,7 +83,7 @@ public class AudioRec : MonoBehaviour
         playaudio.clip = notmyAudioClip;
         playaudio.Play();
 
-        //go to the next scene
+        //go to the next scene after coruitine startcountdown(30) has ended
        
     }
     public void ListenToAudioInternalServer(Byte[] RecievedAudioData)

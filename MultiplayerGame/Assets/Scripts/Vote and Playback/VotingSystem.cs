@@ -57,7 +57,7 @@ public class VotingSystem : MonoBehaviour
             if(votes[0] == scenenumber) //not twice the same
             { return; }
             votes.Add(scenenumber);
-            sender.GetComponent<Image>().color = Color.yellow;
+            sender.GetComponent<Image>().color = Color.green;
             votecount += 1;
             return;
         }

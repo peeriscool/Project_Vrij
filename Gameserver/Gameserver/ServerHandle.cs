@@ -71,10 +71,10 @@ namespace Gameserver
         public static void RequestAudioForPlaybackRecieved(int _fromClient, Packet _packet)
         {
             int Dictonarykey = _packet.ReadInt() ;
-            
+            int owner = RememberGameCode.parseEpisodeName(Dictonarykey);
             try
             {
-                byte[] requestedaudiofile = AudioRecordings.RecoredVoiceMessages[Dictonarykey];
+                byte[] requestedaudiofile = AudioRecordings.RecoredVoiceMessages[owner];
                 ServerSend.SendAudioToPlayers(requestedaudiofile); //sends audio for everybody to hear!
             }
             catch (Exception)
