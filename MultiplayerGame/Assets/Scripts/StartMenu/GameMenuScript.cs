@@ -30,6 +30,10 @@ public class GameMenuScript : MonoBehaviour
     { SceneManager.LoadScene("WinningVideoScene", LoadSceneMode.Single); }
     public void LoadMenuScene()
     { SceneManager.LoadScene("StartMenu", LoadSceneMode.Single); }
+    public void Discconect()
+    { Client.instance.Disconnect(); }
+
+   
     public void LoadGameScene(string PlayerScene) 
     {SceneManager.LoadScene(PlayerScene, LoadSceneMode.Single); }
 

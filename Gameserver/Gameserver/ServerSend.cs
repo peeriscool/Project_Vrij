@@ -207,7 +207,25 @@ namespace Gameserver
                 SendTCPDataToAll(_packet);
             }
         }
-        
+
+        public static void SendVotingResults(List <int> result)
+        {
+            Console.WriteLine("Sending votes...");
+
+
+
+            using (Packet _packet = new Packet((int)ServerPackets.SendVotingResults))
+            {
+                _packet.Write(result.Count); //write length of package
+                foreach (int vote in result) //write every vote to as a seprate int
+                {
+                    _packet.Write(vote);
+                } 
+                SendTCPDataToAll(_packet);
+            }
+        }
+       
+
         #endregion
     }
 }

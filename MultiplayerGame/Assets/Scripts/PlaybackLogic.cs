@@ -36,7 +36,7 @@ public static class PlaybackLogic
         //wait for the scene to be over then reload LoadScenelogic()
         try
         {
-            GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>().StartCountdown();
+            GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>().StartCountdown(20);
         }
         catch (System.Exception)
         {

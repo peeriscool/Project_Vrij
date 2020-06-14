@@ -19,6 +19,7 @@ namespace Gameserver
         SendEpisodeNameback,
         RequestAudioForPlaybackRecieved,
         AllmessagesRecorded,
+        SendVotingResults,
     }
 
     /// <summary>Sent from client to server.</summary>

@@ -116,7 +116,6 @@ public class ClientSend : MonoBehaviour
             //  _packet.Write(Client.instance.myid);
             SendTCPData(_packet);
         }
-
     }
 
 

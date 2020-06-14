@@ -20,6 +20,7 @@ public enum ServerPackets
     sendepisodenameback,
     RequestAudioForPlaybackRecieved,
     AllmessagesRecorded,
+    SendVotingResults,
 }
 
 /// <summary>Sent from client to server.</summary>

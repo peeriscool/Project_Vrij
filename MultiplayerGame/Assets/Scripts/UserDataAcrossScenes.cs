@@ -77,4 +77,10 @@ public static class UserDataAcrossScenes
         get;
         set;
     }
+
+    public static List<int> Votes
+    {
+        get;
+        set;
+    }
 }

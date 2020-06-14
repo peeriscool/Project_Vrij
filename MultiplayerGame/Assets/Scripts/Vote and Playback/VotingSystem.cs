@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class VotingSystem : MonoBehaviour
 {
@@ -13,10 +14,8 @@ public class VotingSystem : MonoBehaviour
     {
         int vote1 = votes[0];
         int vote2 = votes[1];
-        //ToDO: 
-        // clientsend.SendVotesToServer(vote1,vote2)
-        Debug.Log(vote1 + " " + vote2 +" votes");
-        //disable submid button
+        ClientSend.SendVotesToServer(vote1, vote2);
+        //ToDo: disable submid button
     }
 
     public void onbuttonclick(Button Sender)
@@ -96,5 +95,17 @@ public class VotingSystem : MonoBehaviour
         }
 
        
+    }
+
+    public void reciveAllvotes(List<int> votes)
+    {
+        GameObject.Find("VotingCanvas").SetActive(false);
+        SceneManager.LoadScene("WinningVideoScene",LoadSceneMode.Additive);
+        //To Do: display votes
+        foreach (int item in votes)
+        {
+            Debug.Log(item);
+        }
+        UserDataAcrossScenes.Votes = votes;
     }
 }

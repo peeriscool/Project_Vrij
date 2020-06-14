@@ -44,6 +44,7 @@ public class iptoclientscript : MonoBehaviour
             sender.GetComponent<Image>().color = Color.green;
             onclickapprove();
             sender.GetComponent<Button>().interactable = false;
+            GameObject.Find("ReadyButton").GetComponent<Button>().interactable = true;
         }
     }
 }

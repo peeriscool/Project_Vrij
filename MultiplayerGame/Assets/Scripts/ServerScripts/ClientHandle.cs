@@ -118,15 +118,24 @@ public class ClientHandle : MonoBehaviour
         bool recieved = _packet.ReadBool();
         UserDataAcrossScenes.ContinueButton = true;
         PlaybackLogic.LoadScenelogic(); //will load the first acting scene
+        GameObject.Find("waitingforplayerscanvas").GetComponent<popup>().Onclick(GameObject.Find("waitingforplayerscanvas"));
         Countdowntonextact current = GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>();
         current.StartCountdown(20); //will start the countdown for the playback
     }
 
-    //public static void Playbackscene (Packet _packet)
-    //{
-    //    bool recieved = _packet.ReadBool();
-    //    PlaybackLogic.LoadScenelogic();
+    public static void RecievedVotes(Packet _packet)
+    {
+        List<int> votes = new List<int>();
+        int length = _packet.ReadInt();
+        for (int i = 0; i < length; i++)
+        {
+            votes.Add(_packet.ReadInt());
+        }
+        //load voting complete scene
+        GameObject.Find("Buttonscriptholder").GetComponent<VotingSystem>().reciveAllvotes(votes);
+        //Send votes to scene
+        //Displayvotes.Displayvotes(votes);
 
-    //}
-    
+    }
+
 }

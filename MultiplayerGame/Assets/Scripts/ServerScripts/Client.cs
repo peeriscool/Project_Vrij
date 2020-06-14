@@ -263,11 +263,12 @@ public class Client : MonoBehaviour
               { (int)ServerPackets.RequestAudioForPlaybackRecieved, ClientHandle.SendEpisodeNameBack}, //something is wrong with the client handle here
               { (int)ServerPackets.sayhi,                           ClientHandle.newplayerjoined},
               { (int)ServerPackets.AllmessagesRecorded,             ClientHandle.ContinueToPlayback},
+              {(int)ServerPackets.SendVotingResults,                ClientHandle.RecievedVotes}                    
            
         };
         Debug.Log("initialized packets.");
     }
-    private void Disconnect()
+    public void Disconnect()
     {
         isConnected = false;
         tcp.socket.Close();

@@ -86,11 +86,12 @@ namespace Gameserver
         }
         public static void Recievedvotes(int _fromClient, Packet _packet)
         {
-
+           
             int vote1 = _packet.ReadInt();
             int vote2 = _packet.ReadInt();
-          
-                                                        
+            VotingSystem.RecieveVotes(vote1,vote2);
+
+
         }
 
         
