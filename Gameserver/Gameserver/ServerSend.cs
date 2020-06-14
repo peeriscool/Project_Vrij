@@ -70,7 +70,16 @@ namespace Gameserver
                 SendTCPData(_toClient, _packet);
             }
         }
+        public static void sayhi(int player)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.sayhi))
+            {
+                _packet.Write(player);
 
+                SendTCPDataToAll( _packet);
+            }
+        }
+       
         public static void SpawnPlayer(int _toClient, Player _player)
         {
             using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer)) //make a packet for spawnplayer
@@ -188,6 +197,17 @@ namespace Gameserver
                 SendTCPData(SendToThisPlayer, _packet);
             }
         }
+
+        public static void AllmessagesRecorded()
+        {
+            Console.WriteLine();
+            using (Packet _packet = new Packet((int)ServerPackets.AllmessagesRecorded))
+            {
+                _packet.Write(true);
+                SendTCPDataToAll(_packet);
+            }
+        }
+        
         #endregion
     }
 }

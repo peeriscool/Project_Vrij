@@ -12,43 +12,34 @@ public class AudioRec : MonoBehaviour
     AudioClip myAudioClip;
     public int cliplenght;
     string ButtonText = "Record";
-    void Start() { }
-    void Update()
-    {
-        //if (Input.GetKeyDown("a"))
-        //{
-        //    //start recording
-        //    RecordWhiledicksa(cliplenght, true);
-        //}
-        //if(Input.GetKeyUp("a"))
-        //{
-        //    //stop recording
-        //    RecordWhiledicksa(cliplenght, false);
-        //}
-    }
-
+    bool recorded = false;
+    bool menu_closed = false;
     void OnGUI()
     {
-        if (GUI.Button(new Rect(10, 10, 100, 50), ButtonText))
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "PlaybackScene")
         {
-
+             recorded = false;
+             menu_closed = false;
+        }
+        GUI.enabled = menu_closed;
+        if (GUI.Button(new Rect(10, 10, 100, 50), ButtonText)) //will send: ClientSend.SendAudioBytes();
+        {
             StartCoroutine(RecordWhile(cliplenght));
-        }
-        if (GUI.Button(new Rect(10, 70, 60, 50), "Save"))
-        {
-            SavWav.Save("myfile", myAudioClip);
 
+        }
+        //GUI.enabled = recorded;
+        //if (GUI.Button(new Rect(10, 140, 60, 50), "End Scene"))
+        //{
+        //    //TODO: what objects should be kept in the next scene?
+        //    //go to scene were you see other players arms move
             
-        }
-        if (GUI.Button(new Rect(10, 140, 60, 50), "End Scene"))
-        {
-            //TODO: what objects should be kept in the next scene?
-            SceneManager.LoadScene("PlaybackScene", LoadSceneMode.Single); //go to scene were you see other players arms move
-
-
-        }
+        //}
     }
-
+    public void menuclosed ()
+        {
+        menu_closed = true;
+        }
     public IEnumerator RecordWhile(float countdownValue)
     {
         myAudioClip = Microphone.Start(null, false, cliplenght, 44100);
@@ -71,60 +62,29 @@ public class AudioRec : MonoBehaviour
         AudioSource playaudio = GetComponent<AudioSource>();
         playaudio.clip = notmyAudioClip;
         playaudio.Play();
-        
         */
+        //    SavWav.Save("myfile", myAudioClip); 
+        recorded = true;
         ClientSend.SendAudioBytes(WavInBytes);
+        SceneManager.LoadScene("PlaybackScene", LoadSceneMode.Single);
     }
-    //public void RecordWhiledicksa(float countdownValue, bool status)
-    //{
-    //    while (status)
-    //    {
-    //        myAudioClip = Microphone.Start(null, false, cliplenght, 44100);
-    //        currCountdownValue = countdownValue;
-    //        while (currCountdownValue > 0)
-    //      //  {
-    //            Debug.Log("Countdown: " + currCountdownValue);
-    //           // yield return new WaitForSeconds(1);
-    //        //    currCountdownValue--;
-    //       // }
-            
-    //    }
-    //    Debug.Log("TimerDone");
-    //    Byte[] WavInBytes = WavUtility.FromAudioClip(myAudioClip);
-    //    //  ClientSend.SendAudioBytes(WavInBytes);
-    //    AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes);
-    //    AudioSource playaudio = GetComponent<AudioSource>();
-    //    playaudio.clip = notmyAudioClip;
-    //    playaudio.Play();
-    //}
-
-    //convert in to byte[]
-    //  AudioClip notmyAudioClip = WavUtility.ToAudioClip(WavInBytes); //convert byte[] in audioclip
-    //--------------------------------------playback audio that was just recorded---------------------------------------------------------
-    // /*
-
-
-    //  */
-    // ClientSend.SendAudioBytes(WavInBytes);
-
+    
     public void ListenToAudioServer(Byte[] RecievedAudioData)
     {
         Debug.Log("Hoi ik heb byte array gevonden, nu nog omzetten in werkend geluid " + RecievedAudioData.Length);
 
-
         //code for removing bytes from the recievedAudio
-
         byte[] doritos = new byte[RecievedAudioData.Length - 12];
         Array.Copy(RecievedAudioData, 12, doritos, 0, doritos.Length);
         Debug.Log("skipped first 4 " + doritos.Length);
         AudioClip notmyAudioClip = WavUtility.ToAudioClip(doritos); //convert byte[] in audioclip 
-
-
-
         //AudioClip testng = WavUtility.ToAudioClip(Application.dataPath + "doritos.wav");
         AudioSource playaudio = GetComponent<AudioSource>();
         playaudio.clip = notmyAudioClip;
         playaudio.Play();
+
+        //go to the next scene
+       
     }
     public void ListenToAudioInternalServer(Byte[] RecievedAudioData)
     {
@@ -134,32 +94,4 @@ public class AudioRec : MonoBehaviour
         playaudio.clip = notmyAudioClip;
         playaudio.Play();
     }
-    // void saveFloatArrayToFile(float[] data)
-    //{
-    //    BinaryWriter writer = new BinaryWriter(File.Open("name.txt", FileMode.Create));
-
-    //    foreach (float item in data)
-    //    {
-    //        writer.Write(item);
-    //    }
-    //    ReadOutWavefile();
-    //}
-    //void ReadOutWavefile()
-    //{
-    //  AudioClip testng =  WavUtility.ToAudioClip(Application.dataPath +"\name.txt");
-    //    AudioSource audio = GetComponent<AudioSource>();
-    //    audio.clip = testng;
-    //    audio.Play();
-    //}
-
-    //void WriteTOByte(byte [] rawData)
-    //{
-
-    //    WAV wav = new WAV(rawData);
-    //    Debug.Log(wav);
-    //    AudioClip audioClip = AudioClip.Create("testSound", wav.SampleCount, 1, wav.Frequency, false, false);
-    //    audioClip.SetData(wav.LeftChannel, 0);
-    //    GetComponent<AudioSource>().clip = audioClip;
-    //    GetComponent<AudioSource>().Play();
-    //}
 }

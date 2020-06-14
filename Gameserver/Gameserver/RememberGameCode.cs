@@ -21,7 +21,7 @@ namespace Gameserver
                 Console.WriteLine(item);
             }
             int sendbackvalue = activegamecode[UserWhoSendEpisodeName-1];
-            Console.WriteLine("Sendbackvalue (+ 1) " + sendbackvalue);
+            Console.WriteLine("Recieved episode name from player " + sendbackvalue +1);
             return sendbackvalue+1;
         }
     }

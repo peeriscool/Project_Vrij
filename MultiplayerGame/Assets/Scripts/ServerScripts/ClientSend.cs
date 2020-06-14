@@ -105,6 +105,21 @@ public class ClientSend : MonoBehaviour
         }
 
     }
+
+    
+ public static void SendVotesToServer(int vote1,int vote2)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.SendVotesToServer))
+        {
+            _packet.Write(vote1);
+            _packet.Write(vote2);
+            //  _packet.Write(Client.instance.myid);
+            SendTCPData(_packet);
+        }
+
+    }
+
+
     #endregion
     //private static void SendFile(Socket client, string fileName, byte[] bytes)
     //{

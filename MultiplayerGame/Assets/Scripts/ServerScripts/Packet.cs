@@ -9,6 +9,7 @@ using UnityEngine;
 public enum ServerPackets
 {
     welcome = 1,
+    sayhi,
     spawnPlayer,
     playerPosition,
     playerRotation,
@@ -18,6 +19,7 @@ public enum ServerPackets
     gamecode,
     sendepisodenameback,
     RequestAudioForPlaybackRecieved,
+    AllmessagesRecorded,
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -30,6 +32,7 @@ public enum ClientPackets
     SendAudioBytes,
     SendEpisodeName,
     requestAudioForPlayback,
+    SendVotesToServer,
 }
 public class Packet : IDisposable
     {

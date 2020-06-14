@@ -17,7 +17,14 @@ public class ClientHandle : MonoBehaviour
 
         Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port);
     }
+    public static void newplayerjoined(Packet _packet)
+    {
+        int _joinedId = _packet.ReadInt();
 
+        Debug.Log("we got a new player!");
+        GameObject.Find("Menu").GetComponent<UIManager>().recievednewplayer();
+    }
+   
     public static void SpawnPlayer(Packet _packet)
     {
         int _id = _packet.ReadInt();
@@ -106,4 +113,20 @@ public class ClientHandle : MonoBehaviour
         // GameObject.Find("Main Camera").AddComponent<ListenToEpisodeName>();
 
     }
+    public static void ContinueToPlayback(Packet _packet) //AllmessagesRecorded on server side
+    {
+        bool recieved = _packet.ReadBool();
+        UserDataAcrossScenes.ContinueButton = true;
+        PlaybackLogic.LoadScenelogic(); //will load the first acting scene
+        Countdowntonextact current = GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>();
+        current.StartCountdown(20); //will start the countdown for the playback
+    }
+
+    //public static void Playbackscene (Packet _packet)
+    //{
+    //    bool recieved = _packet.ReadBool();
+    //    PlaybackLogic.LoadScenelogic();
+
+    //}
+    
 }

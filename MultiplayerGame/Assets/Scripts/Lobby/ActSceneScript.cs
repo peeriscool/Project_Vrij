@@ -16,12 +16,13 @@ public class ActSceneScript : MonoBehaviour
         ClientSend.requestAudioForPlayback(Client.instance.myid);
     }
 
-    void additveloadscene()
+   public void additveloadscene()
     {
-        
+
         //load Scene that currently being acted on
         //unload scene and move on to the next one
         //until there are no more scenes left
         //then go to the voting scene
+        PlaybackLogic.LoadScenelogic();
     }
 }

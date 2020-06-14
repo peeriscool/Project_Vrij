@@ -38,14 +38,17 @@ public class Sendbuttonscript : MonoBehaviour
         string newtext = ChannelNameText.text.Insert(36, scenename);
         ChannelNameText.text = newtext;
     }
-    public void SendButtonIsclicked()
+    public void SendButtonIsclicked(Button Sendbutton)
     {
         inputfieldtext = inputfield.text;
         if (inputfieldtext != null)
         {
+           
             //episode naam sturen naar server en geven aan de correcte user
             ClientSend.SendEpisodeName(inputfieldtext);
             Textsend = true;
+            Sendbutton.interactable = false;
+
         }
     }
     public void GoToScene()

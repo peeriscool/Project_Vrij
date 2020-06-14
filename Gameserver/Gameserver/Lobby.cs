@@ -5,7 +5,7 @@ namespace Gameserver
 {
     static class Lobby
     {
-        static List<ReadyPlayer> playerlist = new List<ReadyPlayer>(); //list of playerstatus
+        public static List<ReadyPlayer> playerlist = new List<ReadyPlayer>(); //list of playerstatus
        // static List<ReadyPlayer> readyplayer = new List<ReadyPlayer>(); //list of playerstatus
         static int playersready = 0;
         static int minimalplayers = 1; //Fix!: 0 is actualy 1 players : 0 and 1

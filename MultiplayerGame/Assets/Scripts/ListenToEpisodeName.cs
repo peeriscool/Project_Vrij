@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ListenToEpisodeName : MonoBehaviour
 {
     public Text EpisodeName;
-
+    public Canvas canvas_episodeNamecontrol;
     void Start()
     {
         EpisodeName.text = UserDataAcrossScenes.Episodename;
@@ -16,4 +16,19 @@ public class ListenToEpisodeName : MonoBehaviour
     //{
     //    EpisodeName.text = UserDataAcrossScenes.Episodename;
     //}
+
+   public void hasrecrodingtakenplace()
+    {
+        if (UserDataAcrossScenes.Recordinghasbeen == false) //recording has not taken place
+        {
+            canvas_episodeNamecontrol.GetComponent<Canvas>().enabled = true;
+            UserDataAcrossScenes.Recordinghasbeen = true;
+        }
+        else //recording has taken place
+        {
+            canvas_episodeNamecontrol.GetComponent<Canvas>().enabled = false;
+        }
+    }
+   
+
 }

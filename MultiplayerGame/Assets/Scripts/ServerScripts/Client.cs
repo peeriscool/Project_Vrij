@@ -251,17 +251,19 @@ public class Client : MonoBehaviour
     {
         packetHandlers = new Dictionary<int, packethandler>()
         {
-              { (int)ServerPackets.welcome, ClientHandle.Welcome },
-              { (int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
-              { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
-              { (int)ServerPackets.playerRotation, ClientHandle.PlayerRotation },
-              { (int)ServerPackets.sendplayernames, ClientHandle.SendPlayerNames },
-              { (int)ServerPackets.startgame, ClientHandle.StartGame },
-              { (int)ServerPackets.SendAudioToPlayers, ClientHandle.SendAudioToPlayers },
-              { (int)ServerPackets.gamecode, ClientHandle.GameCode},
-               { (int)ServerPackets.sendepisodenameback, ClientHandle.SendEpisodeNameBack},
-                { (int)ServerPackets.RequestAudioForPlaybackRecieved, ClientHandle.SendEpisodeNameBack},
-               
+              { (int)ServerPackets.welcome,                         ClientHandle.Welcome },
+              { (int)ServerPackets.spawnPlayer,                     ClientHandle.SpawnPlayer },
+              { (int)ServerPackets.playerPosition,                  ClientHandle.PlayerPosition },
+              { (int)ServerPackets.playerRotation,                  ClientHandle.PlayerRotation },
+              { (int)ServerPackets.sendplayernames,                 ClientHandle.SendPlayerNames },
+              { (int)ServerPackets.startgame,                       ClientHandle.StartGame },
+              { (int)ServerPackets.SendAudioToPlayers,              ClientHandle.SendAudioToPlayers },
+              { (int)ServerPackets.gamecode,                        ClientHandle.GameCode},
+              { (int)ServerPackets.sendepisodenameback,             ClientHandle.SendEpisodeNameBack},
+              { (int)ServerPackets.RequestAudioForPlaybackRecieved, ClientHandle.SendEpisodeNameBack}, //something is wrong with the client handle here
+              { (int)ServerPackets.sayhi,                           ClientHandle.newplayerjoined},
+              { (int)ServerPackets.AllmessagesRecorded,             ClientHandle.ContinueToPlayback},
+           
         };
         Debug.Log("initialized packets.");
     }

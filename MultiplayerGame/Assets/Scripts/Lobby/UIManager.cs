@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour
     public GameObject startMenu;
     public InputField usernameField;
     public Text Names;
-    public Button Refresher;
     public Toggle Ready; 
     bool toggle = true;
     Color defaultbuttoncolor;
@@ -21,7 +20,7 @@ public class UIManager : MonoBehaviour
     Text newplayercounttext;
     private void Awake()
     {
-        Refresher.interactable = false;
+      
 
         if (instance == null)
         {
@@ -43,12 +42,16 @@ public class UIManager : MonoBehaviour
         }
         startMenu.SetActive(false);
         usernameField.interactable = false;
-        Refresher.interactable = true;
+
         Client.instance.ConnectedToServer();
         
         //Client.instance.RefreshPlayerList(); //initial load of online plyers on the server
     }
-
+    public void recievednewplayer()
+    {
+        Names.text = "";
+        ClientSend.GetListOfPlayers();
+    }
     public void ConnectedToServer(bool ready)
     {
         if (usernameField.text == null || usernameField.text == "Username...")
@@ -57,7 +60,7 @@ public class UIManager : MonoBehaviour
         }
         startMenu.SetActive(false);
         usernameField.interactable = false;
-        Refresher.interactable = true;
+
         Client.instance.ConnectedToServer();
 
         //Client.instance.RefreshPlayerList(); //initial load of online plyers on the server

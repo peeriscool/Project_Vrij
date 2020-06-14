@@ -72,7 +72,10 @@ namespace Gameserver
                 
 
             }
-
+            foreach (int item in usedvalues)
+            {
+                Console.WriteLine(item);
+            }
 
             return usedvalues;
         }

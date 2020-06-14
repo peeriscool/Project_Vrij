@@ -8,6 +8,7 @@ namespace Gameserver
     public enum ServerPackets
     {
         welcome = 1,
+        sayhi,
         spawnPlayer,
         playerPosition,
         playerRotation,
@@ -17,6 +18,7 @@ namespace Gameserver
         GameCode,
         SendEpisodeNameback,
         RequestAudioForPlaybackRecieved,
+        AllmessagesRecorded,
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -29,6 +31,7 @@ namespace Gameserver
         sendaudiobytes,
         sendepisodename,
         requestAudioForPlayback,
+        SendVotesToServer,
     }
 
     public class Packet : IDisposable

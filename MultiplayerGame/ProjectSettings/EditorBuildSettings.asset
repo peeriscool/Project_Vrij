@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/EpisodeNamingScene.unity
     guid: 8a1e9afbd26ab224cafe4072e8d55fe5
   - enabled: 1
-    path: Assets/Scenes/TvScene1.unity
+    path: Assets/Scenes/obselete/TvScene1.unity
     guid: f3583d8e5ad3c114a82d80ab198a6770
   - enabled: 1
     path: Assets/Scenes/PlaybackScene.unity

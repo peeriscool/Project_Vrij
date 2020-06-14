@@ -6,7 +6,7 @@ public class iptoclientscript : MonoBehaviour
 {
     public Text inputfield;
     // Start is called before the first frame update
-    public void onclickapprove()
+    void onclickapprove()
     {
         try
         {
@@ -21,7 +21,7 @@ public class iptoclientscript : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void controlIp()
+    public void controlIp(GameObject sender)
     {
         string ip = inputfield.text;
         string[] ipStringArr = ip.Split('.');
@@ -41,7 +41,9 @@ public class iptoclientscript : MonoBehaviour
                 }
             }
             Debug.Log("aproved");
+            sender.GetComponent<Image>().color = Color.green;
             onclickapprove();
+            sender.GetComponent<Button>().interactable = false;
         }
     }
 }

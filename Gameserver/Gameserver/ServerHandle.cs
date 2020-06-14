@@ -54,7 +54,7 @@ namespace Gameserver
             byte[] AudioRecieved = _packet.ToArray();
             Console.WriteLine("i recieved audio now what the fuck you want me to with this :" + AudioRecieved.Length);
            AudioRecordings.AddvoiceRecord(AudioRecieved, _fromClient); //should have been reversed but o well
-            ServerSend.SendAudioToPlayers(AudioRecieved, _fromClient);
+          //  ServerSend.SendAudioToPlayers(AudioRecieved, _fromClient); //playback audio for other players after recorded
         }
 
         public static void SendEpisodeName(int _fromClient, Packet _packet)
@@ -71,6 +71,7 @@ namespace Gameserver
         public static void RequestAudioForPlaybackRecieved(int _fromClient, Packet _packet)
         {
             int Dictonarykey = _packet.ReadInt() ;
+            
             try
             {
                 byte[] requestedaudiofile = AudioRecordings.RecoredVoiceMessages[Dictonarykey];
@@ -83,6 +84,15 @@ namespace Gameserver
             }
                 
         }
+        public static void Recievedvotes(int _fromClient, Packet _packet)
+        {
 
+            int vote1 = _packet.ReadInt();
+            int vote2 = _packet.ReadInt();
+          
+                                                        
+        }
+
+        
     }
 }

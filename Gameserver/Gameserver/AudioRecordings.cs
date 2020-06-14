@@ -21,6 +21,13 @@ namespace Gameserver
                 Console.WriteLine("Message already exists for that player");
                 //TODO: replace existing message with new one
             }
+            Console.WriteLine("Recordedmessages/players " + RecoredVoiceMessages.Count + " " + Lobby.playerlist.Count);
+            if(RecoredVoiceMessages.Count == Lobby.playerlist.Count) //if all players have sended a message
+            {
+                //toDO: send to all players that the recordings are in!
+                Console.WriteLine("ladies and gentlemen... we got em!");
+                ServerSend.AllmessagesRecorded();
+            }
         }
     }
 }

@@ -63,4 +63,18 @@ public static class UserDataAcrossScenes
         //clientsend.methode die de string geeft aan de juiste player in de correcte scene
         return "hier moet nog code neef";
     }
+    //---------------------------------------------------------------------------------
+
+    public static bool ContinueButton
+    {
+        get;
+        set;
+    }
+
+
+    public static bool Recordinghasbeen
+    {
+        get;
+        set;
+    }
 }
