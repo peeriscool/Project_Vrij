@@ -124,6 +124,13 @@ public class UIManager : MonoBehaviour
         }
        
     }
+
+    //Most epic back button made by Jesse Brolsma yeah yeah yeah B)
+    public void BackButton()
+    {
+        SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
+    }
+
     IEnumerator ExampleCoroutine(bool status)
     {
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
