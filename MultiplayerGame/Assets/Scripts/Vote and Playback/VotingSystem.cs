@@ -10,12 +10,15 @@ public class VotingSystem : MonoBehaviour
     static List<int> votes = new List<int>();
     static int index = 0;
     int votecount = 0;
-   public void Submit()
+    bool Submided = false;
+   public void Submit(Button owner)
     {
+      
         int vote1 = votes[0];
         int vote2 = votes[1];
         ClientSend.SendVotesToServer(vote1, vote2);
         //ToDo: disable submid button
+        owner.enabled = false;
     }
 
     public void onbuttonclick(Button Sender)
@@ -28,7 +31,7 @@ public class VotingSystem : MonoBehaviour
     }
     private void Update()
     {
-        if(votes.Count == 2)
+        if(votes.Count == 2 )
         {
             GameObject.Find("Submit").GetComponent<Button>().interactable = true;
         }
@@ -101,7 +104,7 @@ public class VotingSystem : MonoBehaviour
     {
         GameObject.Find("VotingCanvas").SetActive(false);
         SceneManager.LoadScene("WinningVideoScene",LoadSceneMode.Additive);
-        //To Do: display votes
+        //display votes whil be handled by representvoting system
         foreach (int item in votes)
         {
             Debug.Log(item);

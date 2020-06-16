@@ -11,7 +11,8 @@ public class Spawnobjects : MonoBehaviour
     public Transform buttonPanel;
     public Transform buttonPrefab;
     public Vector3 ButtonLocation;
-    public float distancefromcamera;
+    public Vector3 distancefromcamera;
+    public Quaternion alterrotation;
   
     void Start() //spawns list of buttons
     {//ToDo: get sprite Image from list and assign to buttons
@@ -45,7 +46,7 @@ public class Spawnobjects : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
                
-                    Instantiate(Activeprefab, hit.point, Quaternion.identity);
+                    Instantiate(Activeprefab, hit.point + distancefromcamera, alterrotation);
             }
  
     }

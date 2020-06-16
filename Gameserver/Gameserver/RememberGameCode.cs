@@ -14,15 +14,16 @@ namespace Gameserver
 
         public static int parseEpisodeName(int UserWhoSendEpisodeName)
         {
+          
             Console.WriteLine("ActiveGameCode values by request:" + UserWhoSendEpisodeName);
             //should return the Id of the player you wrote a episode name for
             foreach (int item in activegamecode)
             {
                 Console.WriteLine(item);
             }
-            int sendbackvalue = activegamecode[UserWhoSendEpisodeName-1];
-            Console.WriteLine("Recieved episode name from player " + sendbackvalue +1);
-            return sendbackvalue+1;
+            int sendbackvalue = activegamecode[UserWhoSendEpisodeName-1]; //-1 want int[] start op 0
+            Console.WriteLine("Recieved episode name for player " + sendbackvalue );
+            return sendbackvalue+1; //+1 want client id is nooit 0
         }
     }
 }

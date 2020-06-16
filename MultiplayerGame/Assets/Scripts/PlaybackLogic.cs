@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public static class PlaybackLogic
 {
-    static int CurrentSceneIndex = 1;
+    public static int CurrentSceneIndex = 1;
     // we waitin for a serverhanddle message
     // that will tell that wich scene we can additve load
     public static void LoadScenelogic()
@@ -37,7 +37,7 @@ public static class PlaybackLogic
         //wait for the scene to be over then reload LoadScenelogic()
         try
         {
-            GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>().StartCountdown(30);
+            GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>().StartCountdown(35);
         }
         catch (System.Exception)
         {

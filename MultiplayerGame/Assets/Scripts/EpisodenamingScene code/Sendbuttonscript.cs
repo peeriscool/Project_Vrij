@@ -11,6 +11,7 @@ public class Sendbuttonscript : MonoBehaviour
     public Text countdownObject;
     public Text ChannelNameText;
     bool Textsend = false;
+    Button failsafe;
     private void Update()
     {
         //if all episode names are shown, display allscenesloaded.text en go to prep scene after a short countdown
@@ -19,7 +20,10 @@ public class Sendbuttonscript : MonoBehaviour
         {
             GoToScene();
         }
-
+        if (Input.GetKeyDown(KeyCode.CapsLock)) //secret bug pssszzzzz!
+        {
+            failsafe.interactable = true;
+        }
     }
     private void Start()
     {
@@ -40,13 +44,14 @@ public class Sendbuttonscript : MonoBehaviour
     }
     public void SendButtonIsclicked(Button Sendbutton)
     {
+        failsafe = Sendbutton;
         inputfieldtext = inputfield.text;
         if (inputfieldtext != null)
         {
-           
+            Textsend = true;
             //episode naam sturen naar server en geven aan de correcte user
             ClientSend.SendEpisodeName(inputfieldtext);
-            Textsend = true;
+           
             Sendbutton.interactable = false;
 
         }

@@ -17,12 +17,12 @@ public static class UserDataAcrossScenes
          "kookingshow",
          "Talkshow",
          "teleshopping",
-           "kookingshow1",
-         "Talkshow1",
-         "teleshopping1",
-           "kookingshow2",
-         "Talkshow2",
-         "teleshopping2",
+         "kookingshow",
+         "Talkshow",
+         "teleshopping",
+         "kookingshow",
+         "Talkshow",
+         "teleshopping",
 
     };
    public static int PlayerSceneValue

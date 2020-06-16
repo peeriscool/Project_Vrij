@@ -31,7 +31,12 @@ public class GameMenuScript : MonoBehaviour
     public void LoadMenuScene()
     { SceneManager.LoadScene("StartMenu", LoadSceneMode.Single); }
     public void Discconect()
-    { Client.instance.Disconnect(); }
+    {
+        Client.instance.Disconnect();
+        UserDataAcrossScenes.Recordinghasbeen = false;
+        UserDataAcrossScenes.ContinueButton = false;
+        PlaybackLogic.CurrentSceneIndex = 1; 
+    }
 
    
     public void LoadGameScene(string PlayerScene) 

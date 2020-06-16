@@ -59,12 +59,13 @@ namespace Gameserver
 
         public static void SendEpisodeName(int _fromClient, Packet _packet)
         {
-            int _clientIdCheck = _packet.ReadInt(); // not sure if the player id int fucks up the string so i try reading an int first before reading string
+            int _clientIdCheck = _packet.ReadInt(); // Id van de speler die de episode naam heeft ingevuld
             string episodename = _packet.ReadString();
             Console.WriteLine(episodename + " recieved episodename");
             //episode name recieved
             //send episode name to the correct user based on the Gamecode
             int SendToPlayerId = RememberGameCode.parseEpisodeName(_fromClient);
+
             Console.WriteLine("Sending episodename to player" + SendToPlayerId);
             ServerSend.SendEpisodeNameback(SendToPlayerId, episodename);
         }

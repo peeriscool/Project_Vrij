@@ -16,6 +16,9 @@ public class VotingButtons : MonoBehaviour
     int buttonCount;
     Quaternion rot = new Quaternion(0,0,0,0);
     public Vector3 margin;
+    public Quaternion objectModification;
+
+    public Text nameofkanidates;
     void Awake()
     {
         spawnloction = buttonlocation.transform.position; 
@@ -41,70 +44,21 @@ public class VotingButtons : MonoBehaviour
     }
     public void displayonlyvotebuttons(List<int>votenumbers)
     {
+        //RepresentVotingSystem voteing = this.gameObject.AddComponent<RepresentVotingSystem>();
+        RepresentVotingSystem voteing = new RepresentVotingSystem();
+        voteing.votearraytovisual(votenumbers, winner, objectModification);
+        //ToDO: display names of scenes 
 
-        int diffrentlocationX = 0;
-        int diffrentlocationy = 0;
-        int ycollum1 = 0;
-        int ycollum2 = 0;
-        int ycollum3 = 0;
-        int scalemultiplier = 3;
-        
-        foreach (int vote in votenumbers)
+        int amountofplayers = UserDataAcrossScenes.gamecode.Length;
+        int x = 0;
+        for (int i = 0; i < amountofplayers; i++) //todo get amount of buttons dynamicly from the server
         {
-            if(vote == 0)
-            {
-                if (diffrentlocationX == 0) //check for row
-                {
-                    ycollum1 =+ scalemultiplier;
-                    diffrentlocationy = ycollum1; //place cube ontop of other cube
-                }
-                diffrentlocationX = 0;
-                //place cube
-            }
-            if (vote == 1)
-            {
-                if (diffrentlocationX == 2)
-                {
-                    ycollum2 =+ scalemultiplier;
-                    diffrentlocationy = ycollum2;
-                }
-                diffrentlocationX = 2;
-
-            }
-            if (vote == 2)
-            {
-                if(diffrentlocationX == 4)
-                {
-                    ycollum3 =+ scalemultiplier;
-                    diffrentlocationy = ycollum3;
-                }
-                diffrentlocationX = 4;
-            }
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            //   cube.transform.position = this.gameObject.transform.position;
-            cube.transform.localScale *= 1; 
-            cube.transform.position = new Vector3(diffrentlocationX, diffrentlocationy, 0);
-            var cubeRenderer = cube.GetComponent<Renderer>();
-            Color32 cubecolor = new Color32(0, (byte)(60 + diffrentlocationy * 40), 0, 100);
-            cubeRenderer.material.SetColor("_Color", cubecolor);
-
-            
+            Text Nameofkanidate = Instantiate(nameofkanidates, new Vector3(x, 0, 0), rot) as Text;
+            Nameofkanidate.transform.SetParent(GameObject.Find("WinningCanvas").GetComponent<Canvas>().transform, false);
+            Nameofkanidate.text = UserDataAcrossScenes.getchannelnamewithgamecode(i+1);
+            Nameofkanidate.transform.position = Nameofkanidate.transform.position + new Vector3(i * 120, 200, -1);
+            x = x + 40;
         }
-        int biggest = Math.Max(Math.Max(ycollum1, ycollum2), ycollum3);
-        GameObject win = Instantiate(winner);
-        if (biggest == ycollum1)
-        {
-            win.transform.position = new Vector3(0, 0, -3);
-        }
-        if (biggest == ycollum2)
-        {
-            win.transform.position = new Vector3(2, 0, -3);
-        }
-        if (biggest == ycollum3)
-        {
-            win.transform.position = new Vector3(4, 0, -3);
-        }
-
     }
 
     public GameObject SetParent(GameObject obj) //assign button to canvas
