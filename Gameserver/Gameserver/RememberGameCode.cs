@@ -27,7 +27,7 @@ namespace Gameserver
         }
         public static int activegamecodenumberswitch(int requestedvalue)
         {
-            int sendback = activegamecode[requestedvalue];
+            int sendback = activegamecode[requestedvalue-1];
             return sendback;
         }
 

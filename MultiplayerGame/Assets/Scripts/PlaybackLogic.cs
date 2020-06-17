@@ -32,15 +32,17 @@ public static class PlaybackLogic
         if (CurrentSceneIndex > 1) { SceneManager.UnloadSceneAsync(UserDataAcrossScenes.getchannelnamewithgamecode(CurrentSceneIndex - 1) + "_playbackversion"); }
             SceneManager.LoadScene(UserDataAcrossScenes.getchannelnamewithgamecode(CurrentSceneIndex)+"_playbackversion",LoadSceneMode.Additive);
         //gotta play audio for that scene
-      // int getaudio = UserDataAcrossScenes.gamecode[CurrentSceneIndex-1]; //will give back the number assoicated with the gamecode
-            ClientSend.requestAudioForPlayback(CurrentSceneIndex);
+        // int getaudio = UserDataAcrossScenes.gamecode[CurrentSceneIndex-1]; //will give back the number assoicated with the gamecode
+
+        ClientSend.requestAudioForPlayback(CurrentSceneIndex);
             //up CurrentSceneIndex for next scene
             CurrentSceneIndex +=1;
 
         //wait for the scene to be over then reload LoadScenelogic()
         try
         {
-            GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>().StartCountdown(40);
+            GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>().StartCountdown(70);
+           GameObject.Find("ScriptHolder_InGame").GetComponent<AudioRec>().ikhebaleenaudiofile = false;
         }
         catch (System.Exception)
         {
