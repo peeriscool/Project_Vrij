@@ -21,6 +21,7 @@ public enum ServerPackets
     RequestAudioForPlaybackRecieved,
     AllmessagesRecorded,
     SendVotingResults,
+    giveEpisodename,
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -34,6 +35,7 @@ public enum ClientPackets
     SendEpisodeName,
     requestAudioForPlayback,
     SendVotesToServer,
+    RequestEpisodenamefordisplay,
 }
 public class Packet : IDisposable
     {

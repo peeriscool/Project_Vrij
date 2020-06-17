@@ -7,7 +7,6 @@ public class Sendbuttonscript : MonoBehaviour
 {
     string inputfieldtext;
     public InputField inputfield;
-    public Text allscenesloaded;
     public Text countdownObject;
     public Text ChannelNameText;
     bool Textsend = false;
@@ -20,10 +19,7 @@ public class Sendbuttonscript : MonoBehaviour
         {
             GoToScene();
         }
-        if (Input.GetKeyDown(KeyCode.CapsLock)) //secret bug pssszzzzz!
-        {
-            failsafe.interactable = true;
-        }
+
     }
     private void Start()
     {
@@ -39,7 +35,7 @@ public class Sendbuttonscript : MonoBehaviour
         Debug.Log("getting gamecode");
         int[] gamecode = UserDataAcrossScenes.gamecode;
         string scenename = UserDataAcrossScenes.getchannelnamewithgamecode(Client.instance.myid);
-        string newtext = ChannelNameText.text.Insert(36, scenename);
+        string newtext = ChannelNameText.text.Insert(27, scenename);
         ChannelNameText.text = newtext;
     }
     public void SendButtonIsclicked(Button Sendbutton)
@@ -55,6 +51,8 @@ public class Sendbuttonscript : MonoBehaviour
             Sendbutton.interactable = false;
 
         }
+
+
     }
     public void GoToScene()
     {

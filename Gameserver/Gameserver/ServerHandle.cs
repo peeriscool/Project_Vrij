@@ -61,6 +61,7 @@ namespace Gameserver
         {
             int _clientIdCheck = _packet.ReadInt(); // Id van de speler die de episode naam heeft ingevuld
             string episodename = _packet.ReadString();
+            StaticValues.giveepisodename(_fromClient, episodename);
             Console.WriteLine(episodename + " recieved episodename");
             //episode name recieved
             //send episode name to the correct user based on the Gamecode
@@ -94,7 +95,25 @@ namespace Gameserver
 
 
         }
+        public static void Episodenamerequest(int _fromClient, Packet _packet)
+        {
+            //fix this!!!!
+          // int correctvalue = RememberGameCode.activegamecode[_fromClient];
+          //  correctvalue = correctvalue + 1;
+            try
+            {
+                string name = StaticValues.getname(_fromClient);
+                ServerSend.giveEpisodename(name, _fromClient);
+            }
+            catch (Exception)
+            {
+                ServerSend.giveEpisodename("namenotloaded", _fromClient);
+                throw;
+            }
+           
+            
+        }
 
-        
+
     }
 }

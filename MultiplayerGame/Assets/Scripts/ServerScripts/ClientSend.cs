@@ -119,6 +119,18 @@ public class ClientSend : MonoBehaviour
     }
 
 
+    public static void RequestEpisodenamefordisplay()
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.RequestEpisodenamefordisplay))
+        {
+
+            _packet.Write(Client.instance.myid);
+
+
+            SendTCPData(_packet);
+        }
+    }
+
     #endregion
     //private static void SendFile(Socket client, string fileName, byte[] bytes)
     //{

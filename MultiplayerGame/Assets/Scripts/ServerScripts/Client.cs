@@ -263,8 +263,8 @@ public class Client : MonoBehaviour
               { (int)ServerPackets.RequestAudioForPlaybackRecieved, ClientHandle.SendEpisodeNameBack}, //something is wrong with the client handle here
               { (int)ServerPackets.sayhi,                           ClientHandle.newplayerjoined},
               { (int)ServerPackets.AllmessagesRecorded,             ClientHandle.ContinueToPlayback},
-              {(int)ServerPackets.SendVotingResults,                ClientHandle.RecievedVotes}                    
-           
+              {(int)ServerPackets.SendVotingResults,                ClientHandle.RecievedVotes},
+            { (int)ServerPackets.giveEpisodename,                   ClientHandle.Namerecieved },                 
         };
         Debug.Log("initialized packets.");
     }

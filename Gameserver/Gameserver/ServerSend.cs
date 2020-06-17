@@ -225,7 +225,14 @@ namespace Gameserver
             }
         }
        
-
+        public static void giveEpisodename(string name, int _fromclient)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.giveEpisodename))
+            {
+                _packet.Write(name);
+                SendTCPData(_fromclient,_packet);
+            }
+        }
         #endregion
     }
 }

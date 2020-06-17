@@ -114,7 +114,8 @@ namespace Gameserver
                 { (int) ClientPackets.sendepisodename,ServerHandle.SendEpisodeName},
                 { (int) ClientPackets.requestAudioForPlayback,ServerHandle.RequestAudioForPlaybackRecieved},
                 { (int) ClientPackets.SendVotesToServer,ServerHandle.Recievedvotes},
-
+                { (int) ClientPackets.RequestEpisodenamefordisplay,ServerHandle.Episodenamerequest},
+                
             };
             Console.WriteLine("Initialized packets");
         }

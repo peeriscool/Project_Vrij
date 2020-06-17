@@ -13,33 +13,39 @@ public class AudioRec : MonoBehaviour
     public int cliplenght;
     string ButtonText = "Record";
     bool recorded = false;
-    bool menu_closed = false;
-    void OnGUI()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "PlaybackScene")
-        {
-             recorded = false;
-             menu_closed = false;
-        }
-        GUI.enabled = menu_closed;
-        if (GUI.Button(new Rect(10, 10, 100, 50), ButtonText)) //will send: ClientSend.SendAudioBytes();
-        {
-            StartCoroutine(RecordWhile(cliplenght));
+   // bool menu_closed = false;
+    //void OnGUI()
+    //{
+    //    Scene currentScene = SceneManager.GetActiveScene();
+    //    if (currentScene.name == "PlaybackScene") //control if recording is allowed
+    //    {
+    //         recorded = false;
+    //         menu_closed = false;
+    //    }
+    //    GUI.enabled = menu_closed;
 
-        }
-        //GUI.enabled = recorded;
-        //if (GUI.Button(new Rect(10, 140, 60, 50), "End Scene"))
-        //{
-        //    //TODO: what objects should be kept in the next scene?
-        //    //go to scene were you see other players arms move
+    //    if (GUI.Button(new Rect(10, 10, 100, 50), ButtonText)) //will send: ClientSend.SendAudioBytes();
+    //    {
+    //        StartCoroutine(RecordWhile(cliplenght));
+
+    //    }
+    //    //GUI.enabled = recorded;
+    //    //if (GUI.Button(new Rect(10, 140, 60, 50), "End Scene"))
+    //    //{
+    //    //    //TODO: what objects should be kept in the next scene?
+    //    //    //go to scene were you see other players arms move
             
-        //}
+    //    //}
+    //}
+    public void startRecording()
+    {
+        StartCoroutine(RecordWhile(cliplenght));
+        
     }
-    public void menuclosed ()
-        {
-        menu_closed = true;
-        }
+    //public void menuclosed ()
+    //    {
+    //    menu_closed = true;
+    //    }
     public IEnumerator RecordWhile(float countdownValue)
     {
         myAudioClip = Microphone.Start(null, false, cliplenght, 44100);

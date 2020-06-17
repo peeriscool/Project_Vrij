@@ -26,8 +26,8 @@ public static class PlaybackLogic
         GameObject.DontDestroyOnLoad(GameObject.Find("ClientManager"));
 
 
-        if (CurrentSceneIndex > 1) { SceneManager.UnloadSceneAsync(UserDataAcrossScenes.getchannelnamewithgamecode(CurrentSceneIndex - 1)); }
-            SceneManager.LoadScene(UserDataAcrossScenes.getchannelnamewithgamecode(CurrentSceneIndex),LoadSceneMode.Additive);
+        if (CurrentSceneIndex > 1) { SceneManager.UnloadSceneAsync(UserDataAcrossScenes.getchannelnamewithgamecode(CurrentSceneIndex - 1) + "_playbackversion"); }
+            SceneManager.LoadScene(UserDataAcrossScenes.getchannelnamewithgamecode(CurrentSceneIndex)+"_playbackversion",LoadSceneMode.Additive);
         //gotta play audio for that scene
       // int getaudio = UserDataAcrossScenes.gamecode[CurrentSceneIndex-1]; //will give back the number assoicated with the gamecode
             ClientSend.requestAudioForPlayback(CurrentSceneIndex);
@@ -37,7 +37,7 @@ public static class PlaybackLogic
         //wait for the scene to be over then reload LoadScenelogic()
         try
         {
-            GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>().StartCountdown(35);
+            GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>().StartCountdown(40);
         }
         catch (System.Exception)
         {

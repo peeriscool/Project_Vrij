@@ -20,6 +20,7 @@ namespace Gameserver
         RequestAudioForPlaybackRecieved,
         AllmessagesRecorded,
         SendVotingResults,
+        giveEpisodename,
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -33,6 +34,7 @@ namespace Gameserver
         sendepisodename,
         requestAudioForPlayback,
         SendVotesToServer,
+        RequestEpisodenamefordisplay,
     }
 
     public class Packet : IDisposable

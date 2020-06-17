@@ -11,7 +11,11 @@ public static class UserDataAcrossScenes
         get;
         set;
     }
-
+    public static string Episodenamefordisplay
+    {
+        get;
+        set;
+    }
     public static string[] Channelnames = new string[]
     {
          "kookingshow",

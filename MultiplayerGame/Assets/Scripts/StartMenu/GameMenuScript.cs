@@ -53,7 +53,7 @@ public class GameMenuScript : MonoBehaviour
             //SceneManager.DontDestroyOnLoad();
             DontDestroyOnLoad(GameObject.Find("ClientManager"));
             //GameObject.Find("Menu").SetActive(false);
-            SceneManager.LoadScene("EpisodeNamingScene", LoadSceneMode.Single); //or additive load?
+            SceneManager.LoadScene("tutorial", LoadSceneMode.Single); //or additive load?
         }
     }
 }
