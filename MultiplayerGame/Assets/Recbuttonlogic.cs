@@ -10,6 +10,9 @@ public class Recbuttonlogic : MonoBehaviour
     string memberme;
     float timer = 10f;
     float currCountdownValue;
+
+    public AudioSource readySet;
+
     public void Recbuttonenable()
     {
        
@@ -29,6 +32,10 @@ public class Recbuttonlogic : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             CountdownText.text = memberme + currCountdownValue.ToString();
+            if (currCountdownValue == 6)
+            {
+                readySet.Play();
+            }
             currCountdownValue--;
         }
         Debug.Log("TimerDone");

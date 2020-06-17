@@ -29,8 +29,9 @@ public class tutorial : MonoBehaviour
     // Update is called once per frame
     public void tutorialbuttonclicked()
     {  
-        index += 1;
         tutorialframe.sprite = sprites[index];
+        index += 1;
+        
       
         if(index == sprites.Length)
         {
