@@ -290,12 +290,12 @@ PrefabInstance:
     - target: {fileID: 639852626711644948, guid: 54137acccaea5784983e95186a2309ee,
         type: 3}
       propertyPath: cliplenght
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 639852626711644950, guid: 54137acccaea5784983e95186a2309ee,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 639852626711644944, guid: 54137acccaea5784983e95186a2309ee, type: 3}
@@ -383,6 +383,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205643025387214808, guid: f171d43adb4d44f4388eb69654913d23,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205643025387214808, guid: f171d43adb4d44f4388eb69654913d23,
+        type: 3}
+      propertyPath: m_Name
+      value: ScriptHolder_InGame (bug)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6205643025387214811, guid: f171d43adb4d44f4388eb69654913d23, type: 3}
@@ -722,6 +732,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4788308717664262201, guid: 469718e8606437e4bab60c2c7634c396,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 469718e8606437e4bab60c2c7634c396, type: 3}
 --- !u!1 &2082551628 stripped
@@ -737,7 +752,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082551628}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80ff8bc51c0cb354fa9b8d552fedbd05, type: 3}
   m_Name: 
@@ -1292,6 +1307,16 @@ PrefabInstance:
     - target: {fileID: 6365459635812047438, guid: 69a39743afe18544681397c872902a37,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365459636247051325, guid: 69a39743afe18544681397c872902a37,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365459636735729701, guid: 69a39743afe18544681397c872902a37,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

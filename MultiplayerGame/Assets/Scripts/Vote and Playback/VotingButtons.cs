@@ -59,6 +59,11 @@ public class VotingButtons : MonoBehaviour
             Nameofkanidate.transform.position = Nameofkanidate.transform.position + new Vector3(i * 120, 200, -1);
             x = x + 40;
         }
+        string choosewinner = UserDataAcrossScenes.Playernames;
+        // 
+        string[] playerstrings = choosewinner.Split(',');
+        GameObject.Find("winner").GetComponent<Text>().text = playerstrings[voteing.winnerint];
+        Debug.Log(playerstrings[voteing.winnerint]);
     }
 
     public GameObject SetParent(GameObject obj) //assign button to canvas

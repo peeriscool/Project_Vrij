@@ -87,4 +87,10 @@ public static class UserDataAcrossScenes
         get;
         set;
     }
+
+    public static string Playernames
+    {
+        get;
+        set;
+    }
 }

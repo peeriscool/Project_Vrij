@@ -7,9 +7,10 @@ public class RepresentVotingSystem : MonoBehaviour
 {
     // Start is called before the first frame update
     List<int> devotes = new List<int>();
-    int biggestfound = 0;
+   public int biggestfound = 0;
+    public int winnerint;
    // public GameObject winner;
-  //  public Quaternion objectModification;
+   //  public Quaternion objectModification;
     int margin;
     //void Start()
     //{
@@ -64,15 +65,16 @@ public class RepresentVotingSystem : MonoBehaviour
             } 
             if(grp.Count() == biggestfound)
             {
-
+                
                 GameObject win = Instantiate(winner);
                 win.transform.localScale *=2;
                 win.transform.position = new Vector3(grp.Key + margin, 0, -1);
                 if (win.transform.position.x == 0) { win.transform.position = new Vector3(grp.Key, 0, -1); }
                 win.transform.rotation = objectModification;
             }
+            winnerint = grp.Key;
         }
-
+       
 
     }
 }

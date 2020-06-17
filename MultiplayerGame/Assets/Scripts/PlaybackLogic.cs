@@ -24,7 +24,10 @@ public static class PlaybackLogic
 
 
         GameObject.DontDestroyOnLoad(GameObject.Find("ClientManager"));
-
+        //if (CurrentSceneIndex == 0)
+        //{
+        //    //load tv shows have been planned
+        //}
 
         if (CurrentSceneIndex > 1) { SceneManager.UnloadSceneAsync(UserDataAcrossScenes.getchannelnamewithgamecode(CurrentSceneIndex - 1) + "_playbackversion"); }
             SceneManager.LoadScene(UserDataAcrossScenes.getchannelnamewithgamecode(CurrentSceneIndex)+"_playbackversion",LoadSceneMode.Additive);

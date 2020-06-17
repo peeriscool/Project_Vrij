@@ -56,7 +56,7 @@ public class ClientHandle : MonoBehaviour
         Debug.Log(readnames);
 
         GameObject.Find("Menu").GetComponent<UIManager>().Fillplayerlist(readnames, playercount);
-
+        UserDataAcrossScenes.Playernames= readnames;
 
     }
     public static void StartGame(Packet _packet)

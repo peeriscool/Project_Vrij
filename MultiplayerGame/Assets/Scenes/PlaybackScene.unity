@@ -395,6 +395,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6241317847191162524, guid: a23c6c0360d00cf46ac175d2ee2d7906,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6241317847601036577, guid: a23c6c0360d00cf46ac175d2ee2d7906,
         type: 3}
       propertyPath: m_IsActive
@@ -410,6 +415,11 @@ PrefabInstance:
       propertyPath: actlogic
       value: 
       objectReference: {fileID: 1876038409}
+    - target: {fileID: 6241317848209278054, guid: a23c6c0360d00cf46ac175d2ee2d7906,
+        type: 3}
+      propertyPath: Countdownlength
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8383550414678715078, guid: a23c6c0360d00cf46ac175d2ee2d7906,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1793,7 +1803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 69, y: 323}
+  m_AnchoredPosition: {x: 69, y: -78}
   m_SizeDelta: {x: 476.1, y: 48.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507862617
@@ -1828,7 +1838,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wachten op andere spelers...
+  m_Text: The Tv schedule has been planned!
 --- !u!222 &1507862618
 CanvasRenderer:
   m_ObjectHideFlags: 0

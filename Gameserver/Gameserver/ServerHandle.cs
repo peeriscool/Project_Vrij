@@ -98,8 +98,9 @@ namespace Gameserver
         public static void Episodenamerequest(int _fromClient, Packet _packet)
         {
             //fix this!!!!
-          // int correctvalue = RememberGameCode.activegamecode[_fromClient];
-          //  correctvalue = correctvalue + 1;
+           // int correctvalue = RememberGameCode.activegamecode[_fromClient];
+           // int correctvalue = RememberGameCode.activegamecodenumberswitch(_fromClient);
+           // correctvalue = correctvalue + 1;
             try
             {
                 string name = StaticValues.getname(_fromClient);
