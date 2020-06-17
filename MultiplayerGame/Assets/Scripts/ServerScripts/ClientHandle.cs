@@ -120,7 +120,7 @@ public class ClientHandle : MonoBehaviour
         PlaybackLogic.LoadScenelogic(); //will load the first acting scene
         GameObject.Find("waitingforplayerscanvas").GetComponent<popup>().Onclick(GameObject.Find("waitingforplayerscanvas"));
         Countdowntonextact current = GameObject.Find("Scriptholder_ActLogic").GetComponent<Countdowntonextact>();
-        current.StartCountdown(40); //will start the countdown for the playback
+        current.StartCountdown(70); //will start the countdown for the playback
     }
 
     public static void RecievedVotes(Packet _packet)

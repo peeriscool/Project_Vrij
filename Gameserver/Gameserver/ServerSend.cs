@@ -172,7 +172,8 @@ namespace Gameserver
             using (Packet _packet = new Packet((int)ServerPackets.SendAudioToPlayers))
             {
                 _packet.Write(AduioBytes);
-                SendTCPDataToAll(_myId, _packet); //except sender
+                //  SendTCPDataToAll(_myId, _packet); //except sender
+                SendTCPData(_myId, _packet);
                 //SendTCPDataToAll(_packet);
             }
             Console.WriteLine("sending audio bytes:" + AduioBytes.Length);
