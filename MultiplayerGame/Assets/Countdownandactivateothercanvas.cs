@@ -8,6 +8,8 @@ public class Countdownandactivateothercanvas : MonoBehaviour
     public Canvas owner;
     public Canvas enable;
     public float tijd;
+
+    public AudioSource winnerBaby;
     // Start is called before the first frame update
    void Start()
     {
@@ -26,5 +28,6 @@ public class Countdownandactivateothercanvas : MonoBehaviour
         Debug.Log("TimerDone");
         Owner.gameObject.SetActive(false);
         Enable.gameObject.SetActive(true);
+        winnerBaby.Play();
     }
 }
