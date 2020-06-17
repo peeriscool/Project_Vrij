@@ -124,6 +124,10 @@ public class UIManager : MonoBehaviour
         }
        
     }
+    //Most epic complicated and masterful back button script made by the greatest game designer in the world 
+    //Totally not copy pasted from the StartMenu script btw B^)
+    public void FuckGoBack()
+    { SceneManager.LoadScene("StartMenu", LoadSceneMode.Single); }
     IEnumerator ExampleCoroutine(bool status)
     {
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
