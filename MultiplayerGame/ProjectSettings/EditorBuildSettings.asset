@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/WinningVideoScene.unity
     guid: ad242366878ebcf4b8d45603865f0f5e
   - enabled: 1
-    path: Assets/Scenes/CorrectNamedScenes/kookingshow.unity
+    path: Assets/Scenes/CorrectNamedScenes/cookingshow.unity
     guid: ec07a93b252292745abb52a55338337e
   - enabled: 1
     path: Assets/Scenes/CorrectNamedScenes/Talkshow.unity
@@ -39,7 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/tutorial.unity
     guid: ace9583f477875b4ea3dedd4ebe59ff5
   - enabled: 1
-    path: Assets/Scenes/CorrectNamedScenes/kookingshow_playbackversion.unity
+    path: Assets/Scenes/CorrectNamedScenes/Cookingshow_playbackversion.unity
     guid: cf046efc4c1351b49a6f4d0290bb9a14
   - enabled: 1
     path: Assets/Scenes/CorrectNamedScenes/Talkshow_playbackversion.unity

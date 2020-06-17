@@ -5,9 +5,10 @@ using System.IO;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class AudioRec : MonoBehaviour
 {
-
+   public bool ikhebaleenaudiofile = false;
     float currCountdownValue;
     AudioClip myAudioClip;
     public int cliplenght;
@@ -48,11 +49,13 @@ public class AudioRec : MonoBehaviour
     //    }
     public IEnumerator RecordWhile(float countdownValue)
     {
+     Text displaycountdown =   GameObject.Find("Countdowndurationrecord").GetComponent<Text>();
         myAudioClip = Microphone.Start(null, false, cliplenght, 44100);
         currCountdownValue = countdownValue;
         while (currCountdownValue > 0)
         {
             Debug.Log("Countdown: " + currCountdownValue);
+            displaycountdown.text = currCountdownValue.ToString();
             ButtonText = currCountdownValue.ToString();
             yield return new WaitForSeconds(1);
             currCountdownValue--;
@@ -78,26 +81,29 @@ public class AudioRec : MonoBehaviour
     public void ListenToAudioServer(Byte[] RecievedAudioData)
     {
         Debug.Log("Hoi ik heb byte array gevonden, nu nog omzetten in werkend geluid " + RecievedAudioData.Length);
-
+        
         //code for removing 12 bytes from the recievedAudio
         byte[] doritos = new byte[RecievedAudioData.Length - 12];
         Array.Copy(RecievedAudioData, 12, doritos, 0, doritos.Length);
         Debug.Log("skipped first 4 " + doritos.Length);
+        if(ikhebaleenaudiofile == false)
+        { 
         AudioClip notmyAudioClip = WavUtility.ToAudioClip(doritos); //convert byte[] in audioclip 
         //AudioClip testng = WavUtility.ToAudioClip(Application.dataPath + "doritos.wav");
         AudioSource playaudio = GetComponent<AudioSource>();
         playaudio.clip = notmyAudioClip;
-        playaudio.Play();
-
-        //go to the next scene after coruitine startcountdown(30) has ended
        
-    }
-    public void ListenToAudioInternalServer(Byte[] RecievedAudioData)
-    {
-        Debug.Log("Hoi ik heb byte array gevonden, nu nog omzetten in werkend geluid " + RecievedAudioData.Length);
-        AudioClip notmyAudioClip = WavUtility.ToAudioClip(RecievedAudioData); //convert byte[] in audioclip 
-        AudioSource playaudio = GetComponent<AudioSource>();
-        playaudio.clip = notmyAudioClip;
         playaudio.Play();
+            //go to the next scene after coruitine startcountdown(30) has ended
+        }
+        ikhebaleenaudiofile = true;
     }
+    //public void ListenToAudioInternalServer(Byte[] RecievedAudioData)
+    //{
+    //    Debug.Log("Hoi ik heb byte array gevonden, nu nog omzetten in werkend geluid " + RecievedAudioData.Length);
+    //    AudioClip notmyAudioClip = WavUtility.ToAudioClip(RecievedAudioData); //convert byte[] in audioclip 
+    //    AudioSource playaudio = GetComponent<AudioSource>();
+    //    playaudio.clip = notmyAudioClip;
+    //    playaudio.Play();
+    //}
 }

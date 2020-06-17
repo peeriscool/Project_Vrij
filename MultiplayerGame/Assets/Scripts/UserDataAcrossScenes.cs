@@ -18,13 +18,13 @@ public static class UserDataAcrossScenes
     }
     public static string[] Channelnames = new string[]
     {
-         "kookingshow",
+         "Cookingshow",
          "Talkshow",
          "teleshopping",
-         "kookingshow",
+         "Cookingshow",
          "Talkshow",
          "teleshopping",
-         "kookingshow",
+         "Cookingshow",
          "Talkshow",
          "teleshopping",
 

@@ -395,10 +395,40 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6241317847191162498, guid: a23c6c0360d00cf46ac175d2ee2d7906,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241317847191162498, guid: a23c6c0360d00cf46ac175d2ee2d7906,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241317847191162498, guid: a23c6c0360d00cf46ac175d2ee2d7906,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241317847191162498, guid: a23c6c0360d00cf46ac175d2ee2d7906,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6241317847191162524, guid: a23c6c0360d00cf46ac175d2ee2d7906,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241317847191162525, guid: a23c6c0360d00cf46ac175d2ee2d7906,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 398
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241317847191162525, guid: a23c6c0360d00cf46ac175d2ee2d7906,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -427
       objectReference: {fileID: 0}
     - target: {fileID: 6241317847601036577, guid: a23c6c0360d00cf46ac175d2ee2d7906,
         type: 3}
@@ -601,7 +631,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95176386}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &95176388
 Camera:
   m_ObjectHideFlags: 0
@@ -1484,7 +1514,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1255353556
 RectTransform:
@@ -2063,6 +2093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43cb6b4a44704034f9c0403a61543485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ikhebaleenaudiofile: 0
   cliplenght: 3
 --- !u!4 &2102352178
 Transform:
